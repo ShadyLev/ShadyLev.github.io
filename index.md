@@ -1,5 +1,6 @@
 <html>
 <head>
+<title>Game Development Portfolio</title>
 <link rel="stylesheet" href="styles.css">
 <div class="topnav">
   <a class="active" href="#home">Home</a>
