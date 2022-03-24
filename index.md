@@ -15,6 +15,7 @@
 <h1>Benedykt Cieśliński</h1>
 <h2>Portfolio</h2>
 <p>This is a paragraph.</p>
+<img src="Images/BeQuiet.png" align="left"> <p> This is bequiet ect </p>
 
 </body>
 </html>
