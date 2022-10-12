@@ -52,6 +52,14 @@ p, ul, ol {
   }
 
 
+strong {
+    font-weight: bold;
+}
+
+center {
+  text-align: -webkit-center;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
@@ -134,6 +142,7 @@ img {
 }
 
 .center {
+  text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -157,7 +166,7 @@ hr.solid {
 
 /* Rounded border */
 hr.rounded {
-  border-top: 8px solid #000000;
+  border-top: 3px solid #0b90ce;
   border-radius: 5px;
 }
 
@@ -167,4 +176,17 @@ hr.rounded {
 	padding-top: 25px;
 	padding-left: 25px;
 	padding-right: 25px;
+}
+
+.greenEntry {
+  padding-top: 10px;
+  color: #0b90ce;
+}
+
+.contact a {
+  color: #0b90ce;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
 }
