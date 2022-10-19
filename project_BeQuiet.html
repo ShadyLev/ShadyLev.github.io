@@ -42,18 +42,121 @@
       <a href="projects.html#NN">Nighty Knights</a>
     </div>
   </div>
-  <a href="cv.html">CV</a>
+  <a href="cv.html">About & Resume</a>
   <a href="contact.html">Contact</a>
 </div>
 </head>
 <body>
 
   <hr id="BeQuiet" class="rounded">
-  <h2>Be Quiet</h2>
-  <img class="center" src="Images/BeQuiet.png" align="center"> 
+  <h1 class="greenEntry">Be Quiet</h1>
+  <br>
 
 
+  <!-- Container for the image gallery -->
+<div class="container">
+
+  <!-- Full-width images with number text -->
+  <div class="mySlides">
+    <div class="numbertext">1 / 3</div>
+      <img src="Images/BeQuiet/BeQuiet1.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 3</div>
+      <img src="Images/BeQuiet/BeQuiet2.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 3</div>
+      <img src="Images/BeQuiet/controllerImage2.jpg" style="width:100%">
+  </div>
+
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="Images/BeQuiet/BeQuiet1.png" style="width:100%" onclick="currentSlide(1)" alt="Main Menu">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/BeQuiet/BeQuiet2.png" style="width:100%" onclick="currentSlide(2)" alt="Gameplay">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/BeQuiet/controllerImage2.jpg" style="width:100%" onclick="currentSlide(3)" alt="Arduino controller">
+    </div>
+  </div>
 </div>
+
+
+  <h2 class="greenEntry">About the project:</h2>
+  <p>University project game created with a custom arduino controller. It is a horror game in which you control your character using a real flashlight,
+     and you must ensure to stay quiet as making noise will be detected by a microphone and will alarm the monster that’s chasing you.
+  </p>
+
+  <h2 class="greenEntry">What I did:</h2>
+  <ul>
+    <li>Level design.</li>
+    <li>UI design and implementation.</li>
+    <li>Unity character controller with arduino inputs.</li>
+    <li>Arduino controller.</li>
+    <li>Monster AI and map jumpscares.</li>
+  </ul>
+
+  <h2 class="greenEntry">More info:</h2>
+  <p>Created in Unity</p>
+  <p>Team size: 1</p>
+  <p>Platform: Windows</p>
+  <br>
+
+  <hr class="rounded">
+  <center>
+    <h1 class="greenEntry">Controller presentation:</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/eW6Ck9yVjo8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </center>
+
+  <br>
+  <br>
+</div>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("demo");
+    let captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  </script>
 
 </body>
 </html>

@@ -42,16 +42,148 @@
       <a href="projects.html#NN">Nighty Knights</a>
     </div>
   </div>
-  <a href="cv.html">CV</a>
+  <a href="cv.html">About & Resume</a>
   <a href="contact.html">Contact</a>
 </div>
 </head>
 <body>
 
   <hr id="BE" class="rounded">
-  <h2 class="center">Bitter Extinction</h2>
-  <img class="center" src="Images/BitterExtinction.jpg" align="center">
+  <h1 class="greenEntry">Bitter Extinction</h1>
+  <br>
 
+
+  <!-- Container for the image gallery -->
+<div class="container">
+
+  <!-- Full-width images with number text -->
+  <div class="mySlides">
+    <div class="numbertext">1 / 6</div>
+      <img src="Images/Bitter/bitter1.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 6</div>
+      <img src="Images/Bitter/bitter2.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+      <img src="Images/Bitter/bitter3.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">4 / 6</div>
+      <img src="Images/Bitter/bitter4.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">5 / 6</div>
+      <img src="Images/Bitter/bitter5.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">6 / 6</div>
+      <img src="Images/Bitter/bitter6.png" style="width:100%">
+  </div>
+
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="Images/Bitter/bitter1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Game brochure.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Bitter/bitter2.png" style="width:100%" onclick="currentSlide(2)" alt="Main menu.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Bitter/bitter3.png" style="width:100%" onclick="currentSlide(3)" alt="In-game shop menu.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Bitter/bitter4.png" style="width:100%" onclick="currentSlide(4)" alt="Gameplay.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Bitter/bitter5.png" style="width:100%" onclick="currentSlide(5)" alt="Gameplay.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Bitter/bitter6.png" style="width:100%" onclick="currentSlide(6)" alt="Gameplay.">
+    </div>
+  </div>
+</div>
+
+
+  <h2 class="greenEntry">About the project:</h2>
+  <p>Bitter Extinction is a tower defence shooter, with a dieselpunk aesthetic. You are commissioned with fortifying an abandoned mining colony.
+    The catch is this glacial planet is home to metal devouring creatures, evolving as they feast on your defences. Extinction is the only way.
+  </p>
+
+  <h2 class="greenEntry">What I did:</h2>
+  <ul>
+    <li>UI design and functionality, including the main menu.</li>
+    <li>Custom key rebinding system.</li>
+    <li>Game settings menu.</li>
+    <li>Enemy pathfinding and AI.</li>
+    <li>Gun selection wheel and tower selection tool.</li>
+    <li>Round system.</li>
+    <li>Audio implementation.</li>
+    <li>Level design.</li>
+  </ul>
+
+  <h2 class="greenEntry">More info:</h2>
+  <p>Created in Unity</p>
+  <p>Team size: 8</p>
+  <p>Platform: Windows</p>
+  <br>
+
+  <hr class="rounded">
+  <center>
+    <h1 class="greenEntry">Game trailer:</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/abIDLtW1kw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </center>
+
+  <br>
+  <br>
+</div>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("demo");
+    let captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  </script>
 
 </div>
 

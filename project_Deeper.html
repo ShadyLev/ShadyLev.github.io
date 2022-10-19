@@ -42,18 +42,130 @@
       <a href="projects.html#NN">Nighty Knights</a>
     </div>
   </div>
-  <a href="cv.html">CV</a>
+  <a href="cv.html">About & Resume</a>
   <a href="contact.html">Contact</a>
 </div>
 </head>
 <body>
 
   <hr id="Deeper" class="rounded">
-  <h2>Deeper</h2>
-  <img class="center" src="Images/Deeper.png" align="center">
+  <h1 class="greenEntry">Deeper</h1>
+  <br>
 
 
+  <!-- Container for the image gallery -->
+<div class="container">
+
+  <!-- Full-width images with number text -->
+  <div class="mySlides">
+    <div class="numbertext">1 / 4</div>
+      <img src="Images/Deeper/deeper1.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 4</div>
+      <img src="Images/Deeper/deeper2.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 4</div>
+      <img src="Images/Deeper/deeper3.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">4 / 4</div>
+      <img src="Images/Deeper/deeper4.png" style="width:100%">
+  </div>
+
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="Images/Deeper/deeper1.png" style="width:100%" onclick="currentSlide(1)" alt="Main Menu">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Deeper/deeper2.png" style="width:100%" onclick="currentSlide(2)" alt="Gameplay">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Deeper/deeper3.png" style="width:100%" onclick="currentSlide(3)" alt="Gameplay">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Deeper/deeper4.png" style="width:100%" onclick="currentSlide(4)" alt="End menu / High score">
+    </div>
+  </div>
 </div>
+
+
+  <h2 class="greenEntry">About the project:</h2>
+  <p>Deeper is a  personal project I have worked on during summer 2022. It was created to keep up on my programming skills as well as exploration of different parts
+    of game development from UI to the backend dungeon generation mechanics.
+  </p>
+
+  <h2 class="greenEntry">What I did:</h2>
+  <ul>
+    <li>Advanced movement mechanic. Includes sprinting, edge pullup, wallrunning and a stamina system.</li>
+    <li>Random level generator which creates new dungeon layouts on each playthrough.</li>
+    <li>Gun mechanics. Different guns with their own unique patterns and shooting styles.</li>
+    <li>UI design and functionality. Including settings allowing to change graphics, saving game progress and stats and audio controls.</li>
+    <li>Audio implementation.</li>
+    <li>The <a href="https://shadylev.itch.io/deeper" target="_new">Itch.Io</a> page.</li>
+  </ul>
+
+  <h2 class="greenEntry">More info:</h2>
+  <p>Created in Unity</p>
+  <p>Team size: 1</p>
+  <p>Platform: Windows</p>
+  <br>
+
+  <hr class="rounded">
+  <center>
+    <h1 class="greenEntry">Game trailer:</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/N79uNcu4Y7M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </center>
+
+  <br>
+  <br>
+</div>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("demo");
+    let captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  </script>
 
 </body>
 </html>
