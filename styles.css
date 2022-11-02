@@ -216,6 +216,11 @@ topIcons a{
   margin: 0 auto;
 }
 
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+}
+
 /* SLIDESHOW */
 
 * {
