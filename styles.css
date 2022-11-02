@@ -219,6 +219,7 @@ topIcons a{
 .grid-container {
   display: inline-grid;
   grid-template-columns: auto auto auto;
+  gap: 5px;
 }
 
 /* SLIDESHOW */
