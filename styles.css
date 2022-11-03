@@ -219,7 +219,11 @@ topIcons a{
 .grid-container {
   display: inline-grid;
   grid-template-columns: auto auto auto;
-  gap: 5px;
+  gap: 2px;
+}
+
+.grid-element > img:hover{
+  -webkit-transform: scale(2,2);
 }
 
 /* SLIDESHOW */

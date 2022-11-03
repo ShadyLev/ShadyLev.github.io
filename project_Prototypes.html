@@ -56,6 +56,7 @@
   <br>
   <br>
   <div class="grid-container">
+    <a style="text-decoration: none; color:white" href="#quest_system"><h1 style="border: #0b90ce; border-width:2px; border-style:solid;">Quest System</h1></a>
     <a style="text-decoration: none; color:white;" href="#cave_fishing"><h1 style="border: #0b90ce; border-width:2px; border-style:solid;">Cave fishing</h1></a>
     <a style="text-decoration: none; color:white" href="#monster_camera"><h1 style="border: #0b90ce; border-width:2px; border-style:solid;">Monster Camera</h1></a>
   </div>
@@ -69,15 +70,15 @@
   <h1 class="greenEntry" id="cave_fishing">Cave fishing</h1>
 
   <div class="grid-container">
-    <div>
+    <div class="grid-element">
       <img src="Images/Prototypes/CaveFishing/caveFishing_envi1.png" width="100%" height="100%">
       <p>Cave environment made by team artists.</p>
     </div>
-    <div>
+    <div class="grid-element">
       <img src="Images/Prototypes/CaveFishing/caveFishing_gun.png" width="100%" height="100%">
       <p>Spear gun made by team artists.</p>
     </div>
-    <div>
+    <div class="grid-element">
       <img src="Images/Prototypes/CaveFishing/fishAI.gif" width="100%" height="100%">
       <p>Fish AI made by me.</p>
     </div>
@@ -119,12 +120,30 @@
   <br>
   <br>
 
-  <!-- SECOND  -->
+  <!-- MONSTER CAMERA  -->
 
 <hr class="rounded">
 
 <h1 class="greenEntry" id="monster_camera">Monster Camera</h1>
 
+<div class="grid-container">
+  <div class="grid-element">
+    <img src="Images/Prototypes/MonsterCamera/cameraDemoGif.gif" width="100%" height="100%">
+    <p>Demonstration of the camera.</p>
+  </div>
+  <div class="grid-element">
+    <img src="Images/Prototypes/MonsterCamera/CapturePhotoCoroutine.png" width="100%" height="100%">
+    <p>Main Coroutine to capture a photo.</p>
+  </div>
+  <div class="grid-element">
+    <img src="Images/Prototypes/MonsterCamera/ShowPhotoAndFlash.png" width="100%" height="100%">
+    <p>Function to display the photo and flash.</p>
+  </div>
+  <div class="grid-element">
+    <img src="Images/Prototypes/MonsterCamera/RemovePhoto.png" width="100%" height="100%">
+    <p>Function to remove the photo and add it to a list.</p>
+  </div>
+</div>
 
 <h2 class="greenEntry">About the project:</h2>
 <p> I wanted to create a simple system in which the player can use a film camera to take pictures of the environment. The catch being that the camera can catch the glimpse of 
@@ -145,7 +164,7 @@
 </div>
 <div style="display: inline-block; padding-left: 15px;">
   <h3 class="greenEntry">Development time:</h3>
-  <h3>1 weeks</h3>
+  <h3>1 week</h3>
 </div>
 <div style="display: inline-block; padding-left: 15px;">
   <h3 class="greenEntry">Download:</h3>
@@ -160,6 +179,82 @@
 
 <br>
 <br>
+
+  <!-- DELIVERY QUEST SYSTEM  -->
+
+  <hr class="rounded">
+
+  <h1 class="greenEntry" id="quest_system">Delivery Quest System</h1>
+  
+  <center>
+    <h2>Demonstration Video</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dUFSB0s5PGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </center>
+  <br>
+  
+  <h2 class="greenEntry">About the project:</h2>
+  <p> In this prototype I wanted to create a system in which the player could collect delivery quests from different points and complete them in any order. Completed quests 
+    will get stored in an archive and the player can track a quest to see the destination on a compass. 
+  </p>
+  <br>
+  <p>The system is based on scriptiable objects which hold the quest information, a player quest manager which checks current and archived quests and mailboxes from which the player
+    can take or deliver quests. The UI is all based around checking the player quest manager and displaying current/archived quests accordingly. Below is the player quest manager.
+    Showcasing the entire system here would be too long but I am more than happy to show the project files on request!
+  </p>
+  
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Prototypes/Quest System/Variables.png" width="100%" height="100%">
+      <p>Script variables.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Prototypes/Quest System/Archive Quest.png" width="100%" height="100%">
+      <p>Function to archive a quest.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Prototypes/Quest System/ArchiveJournalAndAddRewards.png" width="100%" height="100%">
+      <p>Functions to archive journals and add rewards for completeing a quest.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Prototypes/Quest System/CheckIfHasQuest.png" width="100%" height="100%">
+      <p>Function to check if player has a active quest.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Prototypes/Quest System/GetQuest.png" width="100%" height="100%">
+      <p>Function that gets a current quest.</p>
+    </div>
+  </div>
+
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Engine:</h3>
+    <h3>Unity</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Platform:</h3>
+    <h3>Windows</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Team size:</h3>
+    <h3>1</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Development time:</h3>
+    <h3>1 month</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Download:</h3>
+    <h3>On request</h3>
+  </div>
+  
+  <h2 class="greenEntry">What I did:</h2>
+  <ul>
+    <li>Quest delivery system.</li>
+    <li>Menu UI.</li>
+  </ul>
+  
+  <br>
+  <br>
+
 </div>
 
 </body>
