@@ -52,10 +52,6 @@
   <hr id="Deeper" class="rounded">
   <h1 class="greenEntry">Deeper</h1>
   <br>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#gunsystem">Gun System</a></li>
-  </ul>
 
 
   <!-- Container for the image gallery -->
@@ -168,15 +164,15 @@
   </center>
   <div class="grid-container">
     <div class="grid-element">
-      <img src="Images/Deeper/Gun_SO.png" width="100%" height="100%">
+      <img src="Images/Deeper/GunSystem/Gun_SO.png" width="100%" height="100%">
       <p>Example gun SO.</p>
     </div>
     <div class="grid-element">
-      <img src="Images/Deeper/Variables.png" width="100%" height="100%">
+      <img src="Images/Deeper/GunSystem/Variables.png" width="100%" height="100%">
       <p>All variables.</p>
     </div>
     <div class="grid-element">
-      <img src="Images/Deeper/StartAndUpdate.png" width="100%" height="100%">
+      <img src="Images/Deeper/GunSystem/StartAndUpdate.png" width="100%" height="100%">
       <p>Start and Update functions.</p>
     </div>
   </div>
@@ -191,7 +187,7 @@
     <h3 class="greenEntry">SwapGun and SwapModel functions.</h3>
   </center>
   <div>
-    <img src="Images/Deeper/SwapGunAndSwapModel.png" width="100%" height="100%">
+    <img src="Images/Deeper/GunSystem/SwapGunAndSwapModel.png" width="100%" height="100%">
   </div>
   <p>Next we have the SwapGun and SwapModel functions. SwapGun starts the gun swapping animation and sets bulletsLeft to 0
   so the player cannot shoot. It is mostly called from another script which handles gun swapping (It simply changes the weaponData
@@ -203,7 +199,7 @@
     <h3 class="greenEntry">Player Input.</h3>
   </center>
   <div>
-    <img src="Images/Deeper/Input.png" width="100%" height="100%">
+    <img src="Images/Deeper/GunSystem/Input.png" width="100%" height="100%">
   </div>
   <p>The Input function as the name implies checks the player's input. 
     If the player is in a rest area (in which I do not want the player to be able to shoot) we simply return from the funtion.
@@ -216,7 +212,7 @@
     <h3 class="greenEntry">Shoot function.</h3>
   </center>
   <div>
-    <img src="Images/Deeper/Shoot1.png" width="100%" height="100%">
+    <img src="Images/Deeper/GunSystem/Shoot1.png" width="100%" height="100%">
   </div>
   <p>
   In the shoot function we handle the shooting logic (duh). Firstly we set readyToShoot bool to false as to not constantly shoot.
@@ -228,7 +224,7 @@
   a direction in which the gun will shoot.
   </p>
   <div>
-    <img src="Images/Deeper/Shoot2.png" width="100%" height="100%">
+    <img src="Images/Deeper/GunSystem/Shoot2.png" width="100%" height="100%">
   </div>
   <p>
     After calculating a direction for the gun to shoot in we can shoot a raycast from the camera in that direction.
@@ -239,7 +235,7 @@
     Next we increase the integer that counts the bullets hit and instantiate a hit effect at the point where the ray hit.
   </p>
   <div>
-    <img src="Images/Deeper/Shoot3.png" width="100%" height="100%">
+    <img src="Images/Deeper/GunSystem/Shoot3.png" width="100%" height="100%">
   </div>
   <p>
     This is the last part of the shoot function handling what happens after we shoot the raycast.
@@ -255,13 +251,13 @@
   </center>
   <div class="grid-container">
     <div class="grid-element">
-      <img src="Images/Deeper/Reset Shot.png" width="100%" height="100%">
+      <img src="Images/Deeper/GunSystem/Reset Shot.png" width="100%" height="100%">
     </div>
     <div class="grid-element">
-      <img src="Images/Deeper/Reload.png" width="100%" height="100%">
+      <img src="Images/Deeper/GunSystem/Reload.png" width="100%" height="100%">
     </div>
     <div class="grid-element">
-      <img src="Images/Deeper/ReloadingFinished.png" width="100%" height="100%">
+      <img src="Images/Deeper/GunSystem/ReloadingFinished.png" width="100%" height="100%">
     </div>
   </div>
   <p>The ResetShot function mentioned above simply resets the two bools allowing player to shoot back to true.
@@ -274,6 +270,22 @@
     And that's the end of the script. If any questions arise I am more than happy to anwser them.
   </p>
 </div>
+
+<h2 class="greenEntry" id="gunsystem">Movement System</h2>
+<p>This movement system is all controlled using a rigidbody and allows the player to walk, crouch, sprint, wallrun, climb walls and pull up ledges.
+  It is also modular with the exception of the core movement (walk, crouch, sprint, slide). Meaning you can enable or disable any part at will.
+  Because it is so extensive I will only cover wall climbing and wall running as I think those are the collest parts.
+</p>
+<button type="button" class="collapsible">Wall Running</button>
+<div class="collapsible-content">
+
+</div>
+<button type="button" class="collapsible">Wall Climbing</button>
+<div class="collapsible-content">
+
+</div>
+
+
   <br>
   <br>
 </div>
