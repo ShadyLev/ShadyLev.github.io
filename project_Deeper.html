@@ -274,17 +274,114 @@
 <h2 class="greenEntry" id="gunsystem">Movement System</h2>
 <p>This movement system is all controlled using a rigidbody and allows the player to walk, crouch, sprint, wallrun, climb walls and pull up ledges.
   It is also modular with the exception of the core movement (walk, crouch, sprint, slide). Meaning you can enable or disable any part at will.
-  Because it is so extensive I will only cover wall climbing and wall running as I think those are the collest parts.
+  Because it is so extensive I will only cover wall climbing.
 </p>
-<button type="button" class="collapsible">Wall Running</button>
-<div class="collapsible-content">
-
-</div>
 <button type="button" class="collapsible">Wall Climbing</button>
 <div class="collapsible-content">
-
+  <center>
+    <h3 class="greenEntry">Variables, Start, Update and CheckWall</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/Variables.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/StartUpdate.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    Firstly we have all the variables and the start update in which we simply
+    get the refrences to the main PlayerMovement script, the PlayerStamina script the rigidbody.
+    In the update function we firstly run the GetInput function (covered below) to get player's input.
+    Next we check if we are attached to a wall, if not we return. After is the stamina check, if player has none 
+    we detach him from the wall (covered later). Then we check the players looking direction.
+    If the player is looking away from the wall and up we check for jump input. If player has enough
+    stamina and presses the jump button we detach the player form the wall, set the jump direction and add the jump force.
+    Otherwise if the player is looking down and presses the jump key they are instead detached from the wall.
+  </p>
+  <center>
+    <h3 class="greenEntry">Fixed Update and Climbing Movement.</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/FixedUpdate.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/ClimbingMovement.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    Following the Update function is the FixedUpdate function which checks if the player is 
+    attached to the wall and has stamina to move. If so we call the ClimbingMovement function.
+    The ClimbingMovement function handles the player's movement on the wall.
+    We simply add force towards the wall as so the player does not detach when they hit a 90 degree
+    corner and we add force in the direction of players input.
+  </p>
+  <center>
+    <h3 class="greenEntry">Player Input and Attaching to a wall.</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/GetInput.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/AttachToWall.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    In the GetInput function we take the players Horizontal and Vertical inputs and calculate the move direction.
+    Very similar to normal ground movement just with a swapped axis.
+  </p>
+  <p>
+    Next is the AttachToWall function which as the name suggests attaches the player to the wall.
+    It checks if the player pressed the button to attach to a wall and if so we set the needed variables.
+    IsClimbing to true so the movement script knows we are climbing, attachedToWall to true as an internal variable and we
+    disable gravity as it is not needed. After that we disable any unneeded script that might interfere with climbing. In this case
+    we only disable the wallRunning script.
+  </p>
+  <center>
+    <h3 class="greenEntry">Detaching from a wall and getting wall dot product.</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/DetachFromWall.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/CheckDotWall.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    DetachFromWall is the exact opposite from attach to wall. The CheckDotWall function helps us know if the player is looking
+    towards of away from the wall. We get the direction from player to wallPoint (point where the player collides with the wall) and 
+    normalize it. Next we get the dot product of that direction and the player's forward vector. Then we return the dot product.
+  </p>
+  <center>
+    <h3 class="greenEntry">Final collision checks.</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/ColEnter.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/ColStay.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Deeper/WallClimb/ColExit.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    Lastly we have the collision checks. When the player enters a collision with the wall.
+    We save the wallNormal value as well as the wallPoint location. After that we check if the player wants to attach to the wall.
+  </p>
+  <p>
+    OnCollicionStay we update wallNormal and wallPoint variables as well as check if player wants to attach to the wall.
+    That is in case the player is sliding down a wall and missed the initial collision enter check.
+  </p>
+  <p>
+    At the very end on exiting collision with the wall we reset the wallNormal and wallPoint variables back to Vector zero (0.0.0) and we call 
+    the DetachFromWall function.
+  </p>
 </div>
-
 
   <br>
   <br>
