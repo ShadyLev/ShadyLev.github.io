@@ -168,6 +168,141 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/abIDLtW1kw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </center>
 
+  <h1 class="greenEntry">Details</h1>
+  <hr class="rounded">
+
+  <h2 class="greenEntry" id="keybindings">Custom Key Binding</h2>
+  <p>This system allows the player to customize the keybindings to their likings. It works on the old unity input system.
+  </p>
+
+  <center>
+    <img src="Images/Bitter/keybindingdemo.gif">
+  </center>
+
+  <button type="button" class="collapsible">Expand explanation</button>
+  <div class="collapsible-content">
+  <center>
+    <h3 class="greenEntry">What does it include?</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/InputManagerEditor.png" width="100%" height="100%">
+      <p>Input manager with all key binding elements.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/KeyElementEditor.png" width="100%" height="100%">
+      <p>Key object and values.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/MenuObjects.png" width="100%" height="100%">
+      <p>Controls menu structure.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ChooseAKeyPanel.png" width="100%" height="100%">
+      <p>Overlay panel to choose a key.</p>
+    </div>
+  </div>
+  <p>
+    The custom key binding system is quite simple in itself. The menu contains a key container where all the key objects are. When player clicks on them a new overlay opens and player 
+    can assign a new key to that binding. Player can then save the new configuration or load the previous one. There's also an option to reset the keybindings to the default values.
+  </p>
+  <center>
+    <h3 class="greenEntry">The Controls Manager Script.</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ControlsEnum.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ControlsDictionary.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ChangeKeyFunction.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    The ControlsAndStatus script holds two dictionaries, one storing default key binding values and second one changable storing the player controls. Additionaly we have
+    the control enums which define a key type that shows what action a key executes. Lastly this script holds a simple function which changes a value in the dictionary to a new one.
+  </p>
+  <center>
+    <h3 class="greenEntry">The Input Manager Script.</h3>
+  </center>
+  <p>The input manager script handles MOST the logic for keybinding. Here's how it works:</p>
+  <img src="Images/Bitter/Keybinding/InputManager_VariablesAndAwake.png" width="100%" height="100%">
+  <p>The keys list holds all gameobjects in the menu which show keybindings. And the seleckKeyPanel is the gameobject which shows up when a player click one of the the 
+    keybinding gameobjects as you can see in the gif above. Next in the Awake() function we load keybindings from memory in case any were saved in previous sessions.
+  </p>
+  <img src="Images/Bitter/Keybinding/OnGui.png" width="100%" height="100%">
+  <p>The OnGUI function listens for any of the key gameobject and waits until the player selects one. When that happens the seleckKeyPanel gets shown with a promp for the player to choose
+    a new keybinding.
+  </p>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/SaveControls.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/LoadControls.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>Next two functions handle saving and loading of controls.</p>
+  <p>SaveControlKeybindings simply goes through each keybinding in the ControlsAndStatus player controls dictionary and saves them as an int representation in the 
+    playerprefs file.
+  </p>
+  <p>The LoadControlKeybindings just like the save function goes through the keybinding dictionary comparing each key with the saved list in playerprefs and if a key is saved it means it got changed
+    by the player previously. If that is the case then we change that key to the value stored in playerprefs file. At the end we reset the key icons to update them to their new values.
+  </p>
+  <img src="Images/Bitter/Keybinding/ResetKeyBinds.png" width="100%" height="100%">
+  <p>The ResetKeyBinds function goes simply resets the player keybinding dictionary with the saved default value dictionary.</p>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ResetKeyTextAndChangeKeyIcon.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/KeyHelper.png" width="100%" height="100%">
+      <p>Object that hold key icons.</p>
+    </div>
+  </div>
+  <p>The last three functions are very simple. Firstly ResetKeyText uses the ChangeKeyCodeToNormalText function which is a method that simple has "if" statements for some keyboard
+    keys that have weird keycode name (e.g "1" = Alpha1) and changes the text on the key to a normal text. ChangeKeyIcon gets a reference to an object which hold all key icons (see above) and sets the 
+  icon that matches the keycode.</p>
+  <center>
+    <h3 class="greenEntry">Choose a kay panel.</h3>
+    <img src="Images/Bitter/Keybinding/chooseakeypanelpanel.png" width="50%" height="50%">
+  </center>
+  <p>The last part of the system is the panel that actually detects the key input and changes the dictionary.</p>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ChoseAKeyOnGuiAllowPress.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/WaitForKeyMouse.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>This object hold the ChooseAKey script which handles the key detection. Firstly the OnGui function checks which key the player wantes to edit then it wait half a second
+    (to remove unwanted inputs from the player) and after that time it waits for a key input. 
+  </p>
+  <p>The WaitForKeyMouse function checks if a keyboard event has occured. When it has it takes the pressed key, changes the keybinding dictionary to the new selected key and closes the overlay.
+    In case of a mouse click we check which mouse button got clicked and change the text to a simpler (M1,M2,M3) and then change the key as normal.
+  </p>
+  <p>This system is quote simple and not very optimised but it gives player more accesibility and freedom which is very important to reach more audience and improve gameplay.</p>
+
+  </div>
+
+  <h2 class="greenEntry" id="roundsystem">Enemy Round System</h2>
+  <p>This system allows the player to customize the keybindings to their likings. It works on the old unity input system.
+  </p>
+
+  <center>
+    <img src="Images/Bitter/roundDemo.gif">
+  </center>
+
+  <button type="button" class="collapsible">Expand explanation</button>
+  <div class="collapsible-content">
+  <center>
+    <h3 class="greenEntry">SO, Variables, Start and Update.</h3>
+  </center>
+  </div>
+
   <br>
   <br>
 </div>
@@ -200,6 +335,22 @@
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
     captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  </script>
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
   }
   </script>
 
