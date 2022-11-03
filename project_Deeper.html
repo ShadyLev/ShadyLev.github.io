@@ -160,6 +160,9 @@
   <p>This gun system accomodates different gun types like shotguns, semi automatic rifles, automatic rifles ect. All that user has to do is just create a new
     scriptable object and insert the values accordingly. Below I go through the gun system script step by step and explain how it works.
   </p>
+
+  <button type="button" class="collapsible">Expand explanation</button>
+  <div class="collapsible-content">
   <center>
     <h3 class="greenEntry">SO, Variables, Start and Update.</h3>
   </center>
@@ -270,6 +273,7 @@
   <p>
     And that's the end of the script. If any questions arise I am more than happy to anwser them.
   </p>
+</div>
   <br>
   <br>
 </div>
@@ -304,6 +308,23 @@
     captionText.innerHTML = dots[slideIndex-1].alt;
   }
   </script>
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+  </script>
+  
 
 </body>
 </html>
