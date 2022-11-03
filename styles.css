@@ -226,6 +226,14 @@ topIcons a{
   -webkit-transform: scale(2,2);
 }
 
+.textbox{
+  width: 800px;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+}
+
 /* SLIDESHOW */
 
 * {
