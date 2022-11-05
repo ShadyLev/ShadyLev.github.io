@@ -186,19 +186,19 @@
   </center>
   <div class="grid-container">
     <div class="grid-element">
-      <img src="Images/Bitter/Keybinding/InputManagerEditor.png" width="100%" height="100%">
-      <p>Input manager with all key binding elements.</p>
-    </div>
-    <div class="grid-element">
-      <img src="Images/Bitter/Keybinding/KeyElementEditor.png" width="100%" height="100%">
-      <p>Key object and values.</p>
-    </div>
-    <div class="grid-element">
-      <img src="Images/Bitter/Keybinding/MenuObjects.png" width="100%" height="100%">
+      <img src="Images/Bitter/Keybinding/MenuObjects.png" width="150%" height="150%">
       <p>Controls menu structure.</p>
     </div>
     <div class="grid-element">
-      <img src="Images/Bitter/Keybinding/ChooseAKeyPanel.png" width="100%" height="100%">
+      <img src="Images/Bitter/Keybinding/InputManagerEditor.png" width="50%" height="50%">
+      <p>Input manager with all key binding elements.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/KeyElementEditor.png" width="50%" height="50%">
+      <p>Key object and values.</p>
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/Keybinding/ChooseAKeyPanel.png" width="50%" height="50%">
       <p>Overlay panel to choose a key.</p>
     </div>
   </div>
@@ -289,7 +289,8 @@
   </div>
 
   <h2 class="greenEntry" id="roundsystem">Enemy Round System</h2>
-  <p>This system allows the player to customize the keybindings to their likings. It works on the old unity input system.
+  <p>This system handles spawning enemies in waves. It's very customizable and at the same time extreamly simple. It takes a form of a single script with two coroutines which handle 
+    rounds and individual waves of enemies.
   </p>
 
   <center>
@@ -299,9 +300,143 @@
   <button type="button" class="collapsible">Expand explanation</button>
   <div class="collapsible-content">
   <center>
-    <h3 class="greenEntry">SO, Variables, Start and Update.</h3>
+    <h3 class="greenEntry">Structure and variables.</h3>
   </center>
+
+  <p>
+    The system works by having a certain amount of rounds. Depending on which round it is the difficulty of the round can be changed. Each round has multiple amount of waves of enemies. 
+    The higher the difficulty the more waves will be spawned with a higher amount of enemies or a different type of enemies. 
+  </p>
+
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Inspector1.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Inspector2.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Inspector3.png" width="100%" height="100%">
+    </div>
   </div>
+
+  <p>
+    Above you can see how the inspector for the system looks like and below you can see the variables inside the script.
+  </p>
+
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Variables1.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Variables2.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Variables3.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/Variables4.png" width="100%" height="100%">
+    </div>
+  </div>
+  <center>
+    <h3 class="greenEntry">Start And Update.</h3>
+  </center>
+  <img src="images/Bitter/WaveSystem/StartAndUpdate.png" width="100%" height="100%">
+  <p>
+    In the start function we begin by setting the isPreperation bool to true as we want to start the game during a isPreperation
+    phase. Next we find the gameobject holding the timer script and assign it to the correct variables.
+    Lastly we begin the roundController coroutine.
+  </p>
+  <p>
+    In the update function we firstly check if every enemy is dead as we do not want the player to wait until the timer for the round is finished.
+    The start check bool is used to enable the check after the last wave of enemies is deployed (in order to not end the round too quickly).
+    The next IF statement checks if we enabled the endless mode. If so we start the coroutine again.
+    Lastly we check if the timer has reached zero and if so we skip the preperation phase. At the end we simply display 
+    the text with the current round and wave number.
+  </p>
+  <center>
+    <h3 class="greenEntry">Supporting functions.</h3>
+  </center>
+  <div class="grid-container">
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/OnValidate.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/VariableUpdate.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    OnValidate function runs in editor and checks if the round numbers are not overlapping each other. For example if the easy rounds end at round 4 and we set the medium rounds to end at round 2 
+    that would cause problems. This function avoids that possibility. It also calculates the full amounts of enemies that will spawn.
+  </p>
+  <p>
+    The VariableUpdate function changes the type of enemies and the round numbers depending on the difficulty of the round.
+  </p>
+  <div class="grid-container" style="grid-template-columns: auto auto auto;">
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/ForeverLoopSpawnWave.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/SpawnBenny.png" width="100%" height="100%">
+    </div>
+    <div class="grid-element">
+      <img src="Images/Bitter/WaveSystem/AreEnemiesDeadResetAndSkip.png" width="100%" height="100%">
+    </div>
+  </div>
+  <p>
+    These 5 functions are the last supporting function outside the two main coroutines. Firstly the 
+    ForeverLoop simply changes the amount of rounds to a ridiculously large number to imitate endless mode. 
+  </p>
+  <p>
+    The SpawnWave function calls a function from another script. SpawnBenny get a number of enemies to spawn and a list of gameobject from which to randomly choose and spawn those enemies.
+  </p>
+  <p>
+    The last 3 functions are very simple. AreEnemiesDead searches for any object with the tag "Enemy", if there are none we change the allEnemiesDead bool to true.
+    ResetEnemies is very similar but instead it destroys any gameobject it can find. And lastly the SkipPreperation function changes the isPreperation bool to false.
+  </p>
+  <center>
+    <h3 class="greenEntry">Main coroutines part 1: RoundController.</h3>
+  </center>
+  <img src="images/Bitter/WaveSystem/roundcontroller1.png" width="100%" height="100%">
+  <p>
+    This coroutine manages the rounds, how and when the start and end. The function is commented step by step. To sum it up it handles when to start a round and displays supporting text and timer.
+  </p>
+  <center>
+    <h3 class="greenEntry">Main coroutines part 2: StartRound.</h3>
+  </center>
+  <p>
+    This coroutine takes care of spawning the waves of enemies and displaying any necessary texts and timers.
+  </p>
+  <img src="images/Bitter/WaveSystem/RoundStart1.png" width="100%" height="100%">
+  <p>
+    On the beggining of the coroutine we heal the player, show the text displaying that the round has started and reset the allEnemiesDead bool.
+  </p>
+  <img src="images/Bitter/WaveSystem/RoundStart2.png" width="100%" height="100%">
+  <p>
+    Next we have a for loop looping until it reaches the number or waves of enemies this round is supposed to have.
+  </p>
+  <img src="images/Bitter/WaveSystem/RoundStart3.png" width="100%" height="100%">
+  <p>
+    After we spawned every wave we start checking if all enemies are dead. If they are we can end the round early.
+    Then we display the text to inform the player the round is over and increase the round number by one.
+  </p>
+  </div>
+
+  <h2 class="greenEntry" id="gunselection">Weapon Selection Wheel</h2>
+  <p>This feature allows the player to easly toggle between owned weapons.
+  </p>
+
+  <center>
+    <img src="Images/Bitter/WeaponSelectDemo.gif">
+  </center>
+
+  <h2 class="greenEntry" id="buildingmode">Building Mode</h2>
+  <p>This feature allows the player to easly access and place structures.
+  </p>
+
+  <center>
+    <img src="Images/Bitter/BuildingModeDemo.gif">
+  </center>
 
   <br>
   <br>
