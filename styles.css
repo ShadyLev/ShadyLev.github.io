@@ -81,7 +81,7 @@ font-size: 17px;
 
 /* Change the color of links on hover */
 .topnav a:hover {
-background-color: #ddd;
+background-color: #0b90ce;
 color: black;
 }
 
@@ -109,6 +109,10 @@ color: white;
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
+.dropbtn:hover{
+  background-color: #0b90ce;
+}
+
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
@@ -131,7 +135,7 @@ color: white;
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: #0b90ce;
 }
 
 /* Show the dropdown menu on hover */
