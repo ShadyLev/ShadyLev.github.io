@@ -25,13 +25,23 @@ ul{
 
 
   .header {
-    padding: 2px;
+    padding: 0px;
     text-align: center;
     background: rgb(27,29,33);
     background: linear-gradient(90deg, rgba(27,29,33,1) 0%, rgba(11,144,206,1) 30%, rgba(27,29,33,1) 100%);
     color: white;
     font-size: 30px;
   }
+
+  #logo {
+    width: 1023px;
+    height: 124x;
+    background: url(Images/Banner.png) no-repeat left top;
+    margin-top: -1px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+}
 
   body {
     margin: 0px;
