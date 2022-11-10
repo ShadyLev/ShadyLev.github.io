@@ -169,7 +169,15 @@
 
   <button type="button" class="collapsible">Expand explanation</button>
   <div class="collapsible-content">
-    <p>Explenation</p>
+    <center>
+      <p class="greenEntry">Scriptable Object</p>
+      <img src="Images/Deeper/GunSystem/Gun_SO.png" width="50%" height="50%">
+      <p>Scriptable Object for a shotgun.</p>
+    </center>
+    <p>The base for creating each gun consist of a single scriptable object which holds all the information for how the gun functions. That includes the main values
+      which describe the gun's damage, range, fire rate, firing mode etc. As well as the gun model, sounds and special effects.
+    </p>
+    <p>The main script then checks which weapon is equiped by the player and uses the infromation from the scriptable object to change the weapon model and values.</p>
   </div>
 
 <h2 class="greenEntry" id="gunsystem">Movement System</h2>
@@ -185,7 +193,13 @@
 
 <button type="button" class="collapsible">Wall Climbing</button>
 <div class="collapsible-content">
-<p>Explenation</p>
+  <center>
+    <p class="greenEntry">Movement scripts on the playe gameobject.</p>
+    <img src="Images/Deeper/PlayerScripts.png" width="50%" height="50%">
+  </center>
+  <p>By separating the different parts of player movement into their own classes it allows for a wider ranger of customisation.
+    We can disable or enable a script to give or take away a certain ability like climbing walls or wallrunning. 
+  </p>
 </div>
 
   <br>

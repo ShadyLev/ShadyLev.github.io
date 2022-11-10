@@ -177,20 +177,25 @@
   <hr class="rounded">
 
   <h2 class="greenEntry" id="keybindings">Custom Key Binding</h2>
-  <p>This system allows the player to customize the keybindings to their likings. It works on the old unity input system.
+  <p>This system allows the player to customize the keybindings to their likings. It works on the old unity input system. It works by saving keybindings into a custom dictionary and 
+    saving it to disk via PlayerPrefs.
   </p>
 
   <center>
     <img src="Images/Bitter/keybindingdemo.gif">
   </center>
-
-  <button type="button" class="collapsible">Expand explanation</button>
+  <button type="button" class="collapsible">Keybinding dictionary.</button>
   <div class="collapsible-content">
-    <p>Explenation</p>
+    <center>
+    <img src="Images/Bitter/Keybinding/ControlsDictionary.png" width="50%" heigh="50%">
+    </center>
+    <p>One dictionary stays unchanged as it contains the original keybindings in case the player wants to reset back to default settings. The other contains the 
+      custom keybinding that player can edit.
+    </p>
   </div>
 
   <h2 class="greenEntry" id="roundsystem">Enemy Round System</h2>
-  <p>This system handles spawning enemies in waves. It's very customizable and at the same time extreamly simple. It takes a form of a single script with two coroutines which handle 
+  <p>This system handles spawning enemies in waves. It's very customizable and at the same time very simple. It takes a form of a single script with two coroutines which handle 
     rounds and individual waves of enemies.
   </p>
 
@@ -200,7 +205,24 @@
 
   <button type="button" class="collapsible">Expand explanation</button>
   <div class="collapsible-content">
-    <p>Explenation</p>
+    <center>
+    <p class="greenEntry">Customisation</p>
+    </center>
+    <div class="grid-container" style="grid-template-columns: repeat(3,1fr);">
+      <div class="grid-element">
+        <img src="Images/Bitter/WaveSystem/Inspector1.png" width="100%" height="100%">
+      </div>
+      <div class="grid-element">
+        <img src="Images/Bitter/WaveSystem/Inspector2.png" width="100%" height="100%">
+      </div>
+      <div class="grid-element">
+        <img src="Images/Bitter/WaveSystem/Inspector3.png" width="100%" height="100%">
+      </div>
+    </div>
+    <p>Above, you can see how the inspector looks for the wave system script. It allows the designers to easily customize the amount of waves, enemies, time between rounds
+      and more. The script contains an OnValidate function that runs in the editor to prevent unwanted errors when inputting values. This way, anyone can use the system without 
+      worrying about things breaking.
+    </p>
   </div>
 
   <h2 class="greenEntry" id="gunselection">Weapon Selection Wheel</h2>
