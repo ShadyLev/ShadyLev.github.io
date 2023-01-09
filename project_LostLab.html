@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>Game Development Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div id="wrapper">
+
+  <div class="header">
+    <div id="logo">
+      <div align="right">
+        <br>
+        <br>
+        <topIcons>
+          <a href="Pdf/Benedykt_Cieslinski_CV.pdf" target="_new">
+            <img src="Images/cvicon.png" width="36" height="36" title="Resume">
+          </a>
+          &nbsp;
+          <a href="https://www.linkedin.com/in/benedyktcieslinski/" target="_new">
+            <img src="Images/linkedInIcon.png" width="36" height="36" title="LinkedIn Profile">
+          </a>
+          &nbsp;
+          <a href="https://twitter.com/ShadyLev" target="_new">
+            <img src="Images/twitterIcon.png" width="36" height="36" title="Twitter Profile">
+          </a>
+          &nbsp;
+          <a href="https://shadylev.itch.io" target="_new">
+            <img src="Images/itchioIcon.png" width="36" height="36" title="Itch.Io Profile">
+          </a>
+        </topIcons>
+      </div>
+    </div>
+  </div>
+
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn" href="projects.html">Projects
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="project_Dollhouse.html">Dollhouse</a>
+      <a href="project_LostLab.html">Lost Lab</a>
+      <a href="project_BitterExtinction.html">Bitter Extinction</a>
+      <a href="project_Deeper.html">Deeper</a>
+      <a href="project_DuplicitousDefrauders.html">Duplicitous Defrauders</a>
+      <a href="project_BeQuiet.html">Be Quiet</a>
+      <a href="project_Prototypes.html">Prototypes</a>
+    </div>
+  </div>
+  <a href="cv.html">About & Resume</a>
+  <a href="contact.html">Contact</a>
+</div>
+</head>
+<body>
+
+  <hr id="BeQuiet" class="rounded">
+  <h1 class="greenEntry">Lost Lab</h1>
+  <br>
+
+
+  <!-- Container for the image gallery -->
+<div class="container">
+
+  <!-- Full-width images with number text -->
+  <div class="mySlides">
+    <div class="numbertext">1 / 4</div>
+      <img src="Images/LostLab/ll1.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 4</div>
+    <img src="Images/LostLab/ll2.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 4</div>
+    <img src="Images/LostLab/ll3.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">4 / 4</div>
+    <img src="Images/LostLab/ll4.png" style="width:100%">
+  </div>
+
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="Images/LostLab/ll1.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot no1.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/LostLab/ll2.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot no2.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/LostLab/ll3.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot no3.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/LostLab/ll4.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot no4.">
+    </div>
+  </div>
+</div>
+
+
+  <h2 class="greenEntry">About the project:</h2>
+  <p>Lost Lab is a university project showcasing a scanner game mechanic inspired by "Scanner Sombre" (Introversion Software 2017). 
+  </p>
+  <p>
+    Lost Lab is a exploration horror in which you, the player, are a prisoner forced to risk your life in order to become free again.
+
+    You are tasked with carrying out a mission for a secret government agency. You must retrieve artefacts from a anomaly called the Lost Lab.
+    
+    All you have is a scanner to detect the environment and a radar to locate the artefacts near by. 
+    
+    You're not the first and you won't be the last... Good luck!
+  </p>
+
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Engine:</h3>
+    <h3>Unity</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Platform:</h3>
+    <h3>Windows</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Team size:</h3>
+    <h3>1</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Development time:</h3>
+    <h3>1 month</h3>
+  </div>
+  <div style="display: inline-block; padding-left: 15px;">
+    <h3 class="greenEntry">Download:</h3>
+    <a style="text-decoration: none;" href="https://shadylev.itch.io/lost-lab" target="_new"><h3>Itch.io</h3></a>
+  </div>
+
+  <h2 class="greenEntry">What I did:</h2>
+  <ul>
+    <li>Level design.</li>
+    <li>UI design and implementation.</li>
+    <li>Scanner mechanic.</li>
+    <li>Artefact radar and display.</li>
+    <li>Map controller.</li>
+    <li>Monster AI.</li>
+  </ul>
+
+  <iframe frameborder="0" src="https://itch.io/embed/1854578?bg_color=000000&amp;fg_color=76ff3a&amp;link_color=fa5c5c&amp;border_color=404040" width="552" height="167"><a href="https://shadylev.itch.io/lost-lab">Lost Lab by Shady</a></iframe>
+
+
+  <hr class="rounded">
+  <center>
+    <h1 class="greenEntry">Gameplay presentation:</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Az242J_Yf5w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </center>
+
+  <h1 class="greenEntry">Details</h1>
+  <hr class="rounded">
+
+  <h2 class="greenEntry" id="keybindings">Scanner mechanic</h2>
+  <p>The main point of the scanner mechanic is to display a large amount of points that will be placed on the level geometry. The more points displayed the more accurate the level layout will become.
+  </p>
+  <p>The scanner mechanic uses VFX Graph to display points as a particle system. The main scanner script sends point data as a custom struct containing information for each point. In
+    this example I am sending the point position, color, size and a int to indicate if the point is using it's own default gradient color or a new static color.
+  </p>
+  <center>
+    <img src="Images/LostLab/CustomVFXData.png" width="80%" heigh="80%">
+  </center>
+  <p>This custom struct data is then added to a list containing all new points to be displayed. When ready that list is then added to a graphics buffer which is sent to the VFX Graph.
+    After that I simply sample the graphics buffer to gain the required data and initialize the new particles. 
+  </p>
+  <p>
+    This method enables more customisation of single particles.
+  </p>
+  <center>
+  <video width="640" height="480" controls>
+    <source src="Images/LostLab/ScannerExample.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
+  </center>
+
+  <br>
+  <br>
+</div>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("demo");
+    let captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  </script>
+
+</body>
+</html>
