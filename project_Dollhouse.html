@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
 <div id="wrapper">
 
 <div class="header">
@@ -40,13 +39,13 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="project_Dollhouse.html">Dollhouse</a>
+      <a href="project_Dollhouse.html">Survival Of The Cutest</a>
       <a href="project_LostLab.html">Lost Lab</a>
       <a href="project_BitterExtinction.html">Bitter Extinction</a>
       <a href="project_Deeper.html">Deeper</a>
       <a href="project_DuplicitousDefrauders.html">Duplicitous Defrauders</a>
       <a href="project_BeQuiet.html">Be Quiet</a>
-      <a href="project_Prototypes.html">Prototypes</a>
+      <a href="project_Prototypes.html">Other Projects</a>
     </div>
   </div>
   <a href="cv.html">About & Resume</a>
@@ -56,7 +55,7 @@
 <body>
 
   <hr id="Dollhouse" class="rounded">
-  <h1 class="greenEntry">Dollhouse (Name not final)</h1>
+  <h1 class="greenEntry">Survival Of The Cutest</h1>
   <br>
 
 
@@ -65,8 +64,16 @@
 
   <!-- Full-width images with number text -->
   <div class="mySlides">
-    <div class="numbertext">1 / 1</div>
-      <img src="Images/Dollhouse/Doll_models.png" style="width:100%">
+    <div class="numbertext">1 / 3</div>
+      <img src="Images/Dollhouse/Doll_Promo.jpg" style="width:100%">
+  </div>
+  <div class="mySlides">
+    <div class="numbertext">2 / 3</div>
+      <img src="Images/Dollhouse/Sarge_Preview.png" style="width:100%">
+  </div>
+  <div class="mySlides">
+    <div class="numbertext">3 / 3</div>
+      <img src="Images/Dollhouse/Furniture_Dolls.png" style="width:100%">
   </div>
 
 
@@ -82,17 +89,22 @@
   <!-- Thumbnail images -->
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src="Images/Dollhouse/Doll_models.png" style="width:100%" onclick="currentSlide(1)" alt="Doll models.">
+      <img class="demo cursor" src="Images/Dollhouse/Doll_Promo.jpg" style="width:100%" onclick="currentSlide(1)" alt="Game concept art.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Dollhouse/Sarge_Preview.png" style="width:100%" onclick="currentSlide(1)" alt="Sarge model preview.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Dollhouse/Furniture_Dolls.png" style="width:100%" onclick="currentSlide(1)" alt="Furniture assets.">
     </div>
   </div>
 </div>
 
 
   <h2 class="greenEntry">About the project:</h2>
-  <p>Project Dollhouse is my 3rd year University game currently in development. 
-  </p>
   <p>
-    As soon as we develop a first vertical slice this page will be updated.
+  Survival of the Cutest is developed in the style of old school survival horrors, within a much more miniature world.
+  Set in a dollhouse, you play as a bunny rabbit doll as they flee from a relentless, dart-throwing action man. Players can sacrifice friends, complete quests, and make use of tools within the environment to ensure their escape.
   </p>
 
   <div style="display: inline-block; padding-left: 15px;">
@@ -115,6 +127,41 @@
     <h3 class="greenEntry">Download:</h3>
     <h3>Not avalible</h3>
   </div>
+
+  <h2 class="greenEntry">My responsibilities:</h2>
+  <ul>
+    <li>Main enemy AI (Sarge).</li>
+    <li>Friendly dolls enemy AI.</li>
+    <li>First person camera controller.</li>
+    <li>Player movement.</li>
+    <li>General help (audio, animation, design ect.) I help out where I can :)</li>
+  </ul>
+
+
+  <h1 class="greenEntry">Details</h1>
+  <hr class="rounded">
+
+  <h2 class="greenEntry">Sarge AI Brain.</h2>
+  <p>The main enemy in the game, Sarge, is a simple AI using a behaviour tree with various branches deciding his behaviour.
+    While the majority of Sarge's behaviour is dictated by the behaviour tree some of his abilities such as pawn sensing, special abilities to use and extra functionality is 
+    being stored and processed in the AI controller.
+  </p>
+  <center>
+    <img src="Images/Dollhouse/Sarge_BT.png" width="80%" heigh="80%">
+  </center>
+  <p>To create a somewhat advanced AI I created multiple custom decorators and services to help track variables from the behaviour tree blackboard and the AI controller.</p>
+  <p>More information will be added once the project reaches first playable demo stage!</p>
+
+  <h2 class="greenEntry">Player controller and camera.</h2>
+  <p>The player controller is very simple and effective. It allows the player to move in every direction as well as jump and crouch. With that the player can also lean left and right
+    to peak around corners.
+  </p>
+  <p>To make the player more immersed I have also added multiple camera shakes to simulate the head bop of walking, running, walking while crouching and idling.</p>
+  <center>
+    <iframe src="https://blueprintue.com/render/9yqtwg-8/" scrolling="no" width="80%" height="50%" allowfullscreen></iframe>
+  </center>
+  <p>The "Is There Wall Next To Camera" macro simply shoots a trace to the side of the camera and returns a bool depending on the trace hit.</p>
+  <p>More information will be added once the project reaches first playable demo stage!</p>
 
   <br>
   <br>
