@@ -64,16 +64,32 @@
 
   <!-- Full-width images with number text -->
   <div class="mySlides">
-    <div class="numbertext">1 / 3</div>
+    <div class="numbertext">1 / 7</div>
       <img src="Images/Dollhouse/Doll_Promo.jpg" style="width:100%">
   </div>
   <div class="mySlides">
-    <div class="numbertext">2 / 3</div>
-      <img src="Images/Dollhouse/Sarge_Preview.png" style="width:100%">
+    <div class="numbertext">2 / 7</div>
+      <img src="Images/Dollhouse/sotc1.png" style="width:100%">
   </div>
   <div class="mySlides">
-    <div class="numbertext">3 / 3</div>
-      <img src="Images/Dollhouse/Furniture_Dolls.png" style="width:100%">
+    <div class="numbertext">3 / 7</div>
+      <img src="Images/Dollhouse/sotc2.png" style="width:100%">
+  </div>
+  <div class="mySlides">
+    <div class="numbertext">4 / 7</div>
+      <img src="Images/Dollhouse/sotc3.png" style="width:100%">
+  </div>
+  <div class="mySlides">
+    <div class="numbertext">5 / 7</div>
+      <img src="Images/Dollhouse/sotc4gif.gif" style="width:100%">
+  </div>
+  <div class="mySlides">
+    <div class="numbertext">6 / 7</div>
+      <img src="Images/Dollhouse/sotc5gif.gif" style="width:100%">
+  </div>
+  <div class="mySlides">
+    <div class="numbertext">7 / 7</div>
+      <img src="Images/Dollhouse/sotc6gif.gif" style="width:100%">
   </div>
 
 
@@ -92,10 +108,22 @@
       <img class="demo cursor" src="Images/Dollhouse/Doll_Promo.jpg" style="width:100%" onclick="currentSlide(1)" alt="Game concept art.">
     </div>
     <div class="column">
-      <img class="demo cursor" src="Images/Dollhouse/Sarge_Preview.png" style="width:100%" onclick="currentSlide(1)" alt="Sarge model preview.">
+      <img class="demo cursor" src="Images/Dollhouse/sotc1.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot.">
     </div>
     <div class="column">
-      <img class="demo cursor" src="Images/Dollhouse/Furniture_Dolls.png" style="width:100%" onclick="currentSlide(1)" alt="Furniture assets.">
+      <img class="demo cursor" src="Images/Dollhouse/sotc2.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Dollhouse/sotc3.png" style="width:100%" onclick="currentSlide(1)" alt="Game screenshot.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Dollhouse/sotc4gif.gif" style="width:100%" onclick="currentSlide(1)" alt="Hiding mechanic.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Dollhouse/sotc5gif.gif" style="width:100%" onclick="currentSlide(1)" alt="Sacrifice mechanic.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Images/Dollhouse/sotc6gif.gif" style="width:100%" onclick="currentSlide(1)" alt="Flash mechanic.">
     </div>
   </div>
 </div>
@@ -134,8 +162,15 @@
     <li>Friendly dolls enemy AI.</li>
     <li>First person camera controller.</li>
     <li>Player movement.</li>
+    <li>UI (Menus, HUD, Journal).</li>
     <li>General help (audio, animation, design ect.) I help out where I can :)</li>
   </ul>
+  <p>While this page contains a lot of my work it is best to simply have a chat with me about ALL the work I have done for the project!</p>
+  <hr class="rounded">
+  <center>
+    <h1 class="greenEntry">Game trailer:</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/_69gJh4lvyI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </center>
 
 
   <h1 class="greenEntry">Details</h1>
@@ -144,25 +179,84 @@
   <h2 class="greenEntry">Sarge AI Brain.</h2>
   <p>The main enemy in the game, Sarge, is a simple AI using a behaviour tree with various branches deciding his behaviour.
     While the majority of Sarge's behaviour is dictated by the behaviour tree some of his abilities such as pawn sensing, special abilities to use and extra functionality is 
-    being stored and processed in the AI controller. I am constantly expanding and improving the AI, it takes a long time as I am the only programmer working on the AI in the team.
-
-  </p>
+    being stored and processed in the AI controller. Inspired by Mr X from Resident Evil and the Alien from Alien Isolation this AI has been an amazing challenge and great fun to
+    design and develop!
+ </p>
+ <p class="greenEntry">Sarge's abilities:</p>
+ <ul>
+   <li>Chasing players and friends.</li>
+   <li>Searching player hide spots.</li>
+   <li>Tracking player movement and investigating areas (using EQS).</li>
+   <li>Following a set spline path.</li>
+   <li>Shooting tracking darts and dashing towards the player (Abilities on cooldown).</li>
+ </ul>
   <center>
     <img src="Images/Dollhouse/Sarge_BT.png" width="80%" heigh="80%">
   </center>
-  <p>To create a somewhat advanced AI I created multiple custom decorators and services to help track variables from the behaviour tree blackboard and the AI controller.</p>
-  <p>More information will be added once the project reaches first playable demo stage!</p>
-
-  <h2 class="greenEntry">Player controller and camera.</h2>
-  <p>The player controller is very simple and effective. It allows the player to move in every direction as well as jump and crouch. With that the player can also lean left and right
-    to peak around corners.
+  <p>To create this AI I had to usilise the power of behaviour trees in Unreal Engine. Different custom tasks were created for Sarge's different behaviours with decorators and services to 
+    update the blackboard and check the conditions required to perform a task.
   </p>
-  <p>To make the player more immersed I have also added multiple camera shakes to simulate the head bop of walking, running, walking while crouching and idling.</p>
   <center>
-    <iframe src="https://blueprintue.com/render/9yqtwg-8/" scrolling="no" width="80%" height="50%" allowfullscreen></iframe>
+  <p class="greenEntry">Example of Sarge's abilities in the behaviour tree:</p>
+    <div class="grid-element"><img src="Images/Dollhouse/SargeAbilitiesBT.png" width="80%" heigh="80%"></div>
   </center>
-  <p>The "Is There Wall Next To Camera" macro simply shoots a trace to the side of the camera and returns a bool depending on the trace hit.</p>
-  <p>More information will be added once the project reaches first playable demo stage!</p>
+  <p>
+    The selector node can choose one of two abilities to perform. But firstly the decorators must allow this branch of the tree to be exectued. For the game's purposes I used two decorators.
+    The first one checks the distance from the AI pawn to the player, if it is above 600 units this decorator will pass the test. The second one is a blackboard key decorator, it will check if
+    the set key (in this case the CanUseAbilities bool) is true. The CanUseAbilities bool is being calculated in the pawn AI controller as it is a simple cooldown. Lastly we have a service which 
+    will randomly return an intiger in range, I then use that intiger to select a random ability for Sarge to perform (as both abilities have a decorator to check it).
+  </p>
+
+  <h2 class="greenEntry">Game UI.</h2>
+  <p>I have created the majority of the game's UI. I have created the look of the main menu, the settings widgets, the death animation and many more in the game.
+    By using Unreal Engines built in widget creator and animation tools I was able to create smooth and polished looking UI that let's the player easly navigate through the game's UI.
+  </p>
+  <center>
+    <img src="Images/Dollhouse/UIShowcase.gif" width="80%" heigh="80%">
+
+  <p class="greenEntry">Konami code secrets in menu:</p>
+  </center>
+  <p>Partly as a joke to hide an easter egg (No hints here, try to guess the combination), but also as a tool to hide development tools, I have created a very simple mechanic
+    to trigger an event after a special set of keys had been pressed in the right order. Obviously inspired by the legendary Konami code.
+  </p>
+  <center>
+    <div class="grid-element"><img src="Images/Dollhouse/CheckHiddenButtons.png" width="80%" heigh="80%"></div>
+  </center>
+  <p>Firstly I needed an array of Key values to create the secret code, then whenever the player triggers the "AnyKey" event I check if the triggered key matches the key at the current index.
+    If it does not match we simply reset the index back to 0. If it does on the other hand we will check if we are at the last possible index by comparing the index value to the length of the 
+    secret Key values array. If we are it means we can trigger whetever event or function we want and we reset the index to 0. If we are not at the end of the array we simply increase the index by one.
+  </p>
+  <h2 class="greenEntry">Doors (I know... the devil.).</h2>
+  <p>To increase the dificulty and feel of a dollhouse I created simple doors. As the player will be running fast through the dollhouse they can open both ways. The door can be locked needing 
+    a key to open or simple just opened. The angle of the door can be adjusted by designers as well as the duration of locked door prompt. The door can also be opened by default.
+  </p>
+  <center>
+    <img src="Images/Dollhouse/Doors.gif" width="80%" heigh="80%">
+  </center>
+  <p class="greenEntry">How do they work:</p>
+  <p>
+    To preserve memory each door has a trigger box, it will detect if player is near them. Once the player enters the triggerbox I can calucate on which side 
+    of the door the player is. This is so we can know what angle to rotate the door to as to always have it open outwards. I enable a Trace for objects that will check if player is looking at the door 
+    itself. Then we can simply open the door using a timeline.
+  </p>
+  <center>
+    <p>The core logic:</p>
+  <iframe width="100%" height="50%" src="https://blueprintue.com/render/t2639_-i/" scrolling="no" allowfullscreen></iframe>
+  </center>
+  <p>
+    For AI interactions I use a different logic. As we want the AI to smoothly open and close doors when necessarry I will only check for them when they collide with the door itself.
+    I simply cast to the 2 types of AI we have in the game and call the event for them.
+  </p>
+  <iframe width="100%" height="50%" src="https://blueprintue.com/render/cl5sjn83/" scrolling="no" allowfullscreen></iframe>
+  <p>Once we know which event to call we can trigger the logic to open the door based on AI type. If a friend has collided with the door we only check if the door is opened, if not we can 
+    calculate the dot product and open the door. For sarge we have to check in which state he is as we want to destroy the door upon collision if he is chasing the player. To do this 
+    I use the switch on MrXStates. If he is not chasing we use the same logic as for friends, but if he is then we call the destroy door function.
+  </p>
+  <iframe width="100%" height="50%" src="https://blueprintue.com/render/zynq6_fs/" scrolling="no" allowfullscreen></iframe>
+  <p>To destroy the door I simply get the current door location and rotation, then I can destroy the door component to then replace it with a breakable door (Chaos) and apply the old door
+    transforms. Simple but very effective.
+  </p>
+  <iframe width="100%" height="50%" src="https://blueprintue.com/render/9i0mthyt/" scrolling="no" allowfullscreen></iframe>
 
   <br>
   <br>
