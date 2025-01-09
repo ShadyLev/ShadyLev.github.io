@@ -64,26 +64,26 @@
 
   <!-- Full-width images with number text -->
   <div class="mySlides">
-    <div class="numbertext">1 / 4</div>
+    <div class="numbertext">1 / 5</div>
       <img src="Images/Robocraft2/rb2_1.gif" style="width:100%">
   </div>
   <div class="mySlides">
-    <div class="numbertext">2 / 4</div>
+    <div class="numbertext">2 / 5</div>
       <img src="Images/Robocraft2/rb2_2.gif" style="width:100%">
   </div>
   <div class="mySlides">
-    <div class="numbertext">3 / 4</div>
+    <div class="numbertext">3 / 5</div>
       <img src="Images/Robocraft2/rb2_3.gif" style="width:100%">
   </div>
   <div class="mySlides">
-    <div class="numbertext">4 / 4</div>
+    <div class="numbertext">4 / 5</div>
       <img src="Images/Robocraft2/rb2_4.gif" style="width:100%">
   </div>
+  <div class="mySlides">
+    <div class="numbertext">5 / 5</div>
+      <img src="Images/Robocraft2/DefenceObjectiveGif.gif" style="width:100%">
+  </div>
 
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
   <!-- Image text -->
   <div class="caption-container">
@@ -93,16 +93,19 @@
   <!-- Thumbnail images -->
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src="Images/Robocraft2/rb2_1.gif" style="width:100%" onclick="currentSlide(1)" alt="In progress, from Robocraft2.com.">
+      <img class="demo cursor" src="Images/Robocraft2/rb2_1.gif" style="width:100%" onclick="currentSlide(1)" alt="Build Bay Gameplay">
     </div>
     <div class="column">
-      <img class="demo cursor" src="Images/Robocraft2/rb2_2.gif" style="width:100%" onclick="currentSlide(2)" alt="In progress, from Robocraft2.com.">
+      <img class="demo cursor" src="Images/Robocraft2/rb2_2.gif" style="width:100%" onclick="currentSlide(2)" alt="PvP Gameplay">
     </div>
     <div class="column">
-      <img class="demo cursor" src="Images/Robocraft2/rb2_3.gif" style="width:100%" onclick="currentSlide(3)" alt="In progress, from Robocraft2.com.">
+      <img class="demo cursor" src="Images/Robocraft2/rb2_3.gif" style="width:100%" onclick="currentSlide(3)" alt="Block Forge">
     </div>
     <div class="column">
-      <img class="demo cursor" src="Images/Robocraft2/rb2_4.gif" style="width:100%" onclick="currentSlide(4)" alt="In progress, from Robocraft2.com.">
+      <img class="demo cursor" src="Images/Robocraft2/rb2_4.gif" style="width:100%" onclick="currentSlide(4)" alt="Entering Test Mode.">
+    </div>
+	<div class="column">
+      <img class="demo cursor" src="Images/Robocraft2/DefenceObjectiveGif.gif" style="width:100%" onclick="currentSlide(5)" alt="PvE Defence Objective">
     </div>
   </div>
 
@@ -123,7 +126,7 @@
   </div>
   <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Team size:</h3>
-    <h3>~20</h3>
+    <h3>14-21</h3>
   </div>
   <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Development time:</h3>
@@ -134,18 +137,318 @@
     <a style="text-decoration: none;" href="https://store.steampowered.com/app/301520/Robocraft/" target="_new"><h3>Steam</h3></a>
   </div>
 
-  <h2 class="greenEntry">My responsibilities:</h2>
+  <h2 class="greenEntry">My responsibilities (Click to jump):</h2>
   <ul>
-    <li>Scoreboard.</li>
-    <li>Block Forge.</li>
-    <li>Gamepad support.</li>
-    <li>Entity conversion.</li>
-    <li>Weapon crosshairs.</li>
-    <li>Machine rectify.</li>
+    <li><a style="text-decoration: none; color:white;" href="#PvE">PvE</a></li>
+    <li><a style="text-decoration: none; color:white;" href="#Scoreboard">Scoreboard</a></li>
+    <li><a style="text-decoration: none; color:white;" href="#BlockForge">BlockForge</a></li>
+    <li><a style="text-decoration: none; color:white;" href="#Conversion">Entity Conversion System</a></li>
+    <li><a style="text-decoration: none; color:white;" href="#Rectify">Rectify</a></li>
+    <li><a style="text-decoration: none; color:white;" href="#WeaponSwitch">Weapon Switching</a></li>
+	<li><a style="text-decoration: none; color:white;" href="#Mentions">Honourable Mentions</a></li>
   </ul>
 
-  <h1 class="greenEntry">Under development!</h1>
+  <h1 class="greenEntry">Details</h1>
+  <hr class="rounded">
 
+  <h2 class="greenEntry" id="PvE">PvE Gamemode (Unreleased).</h2>
+  <p> As part of the full release of Robocraft 2, we planned to include various PvE gamemodes for players to enjoy in a CO-OP way. These gamemodes differed from our normal PvP bu having increased AI count,
+  specially created objectives and reworked gameplay systems.
+ </p>
+ <p class="greenEntry">Visual Scripting:</p>
+ <button type="button" class="collapsible">Expand.</button>
+ <div class="collapsible-content">
+	<br>
+	 <p>
+		To implement Visual Scripting in out Unity project we decided to use Unity's built-in solution (Visual Scripting package based on the Bolt package).
+		With this package I could create custom Units (Nodes) which would then be used by designers to create gameplay logic but before that happened I had to
+		integrate our framework (Svelto ECS) to be able to use systems in these custom Units.
+	</p>
+	<p>
+		To do this I used interfaces that would inject necessary systems into the Units, as the graphs would be places on a gameobject in the scene I reacted to a scene
+		being created to then search for a tag component. This component then allowed me to iterate the child GO and find all graphs.
+		For each graph I gathered all the Units in it (in case of nested graphs I would recursivly iterate the Units to find all) and then injected whatever field they needed,
+		based on the interfaces they implemented.
+		This allows for me to query, create, remove and manipulate data of any entity I wanted without the need to write an engine (ECS System) for it.
+	</p>
+	<p>
+		I also had to create custom event units for gameplay events like player death or damage. But more importantly to keep the logic in sync with out engines I called the
+		update event on the deterministic frame during which out gameplay logic ran at. If a unit needed to perform some logic that had to be executed at a specific timing, for
+		example raycasting (ran at a sync frame with DOTS to ensure all physics entities are included),	it could use ECSRequests.
+		ECSRequests allow to create a request which will be processed by a dedicated engine to perform an action based on request data.
+		You can poll a request to check if it is done, so units with such request are run as a coroutine as a request can take multiple frames to complete.
+		One example of ECSRequest usage was to check if a position was in sight of enemy team players. I would simply create a request, supply the float3 position to check and wait to see
+		if the result was true or false.
+	 </p>
+ </div>
+ <p class="greenEntry">PvE Objectives:</p>
+ <button type="button" class="collapsible">Expand.</button>
+ <div class="collapsible-content">
+	<br>
+	<p>
+		Creating the Visual Scripting system was the base to create gameplay objectives designers could set up. I created the first 4 challenges based on provided design documents on Confluence 
+		and with close collaboration with the design team.
+		Each objective was a unique entity but sharing the base descriptor with logic that is common amongst them (base details about the objective type, is it active or not etc.)
+		With that these objectives could be created using their own factory which was injected as needed to a custom unit.
+	</p>
+	<ul>
+	   <li>Attack/Defend Objectives.</li>
+	   <li>Extermination Objective (Kill X amount of enemies).</li>
+	   <li>Escort Objective.</li>
+	</ul>
+	<p>Attack/Defend</p>
+	<p>
+		Firstly the attack and defend objectives were new physics entities that would be spawned in the world using a custom Unit. Becasue on base these objectives are just structures that can be damaged and have health
+		and a team value they function the same way (Defend objective on your team, attack objective on enemy team). These enties had a rigidbody and could be set as static or moved via a custom unit to set entity position.
+		They would also animate on activation, but because the graph was server side and the object itself was rendered on the client I created a very simple data driven animation system to allow animation of object on 
+		the server by writing simple animation frames that would lerp the position and rotation of the object. The benefit of that is the colliders are also moving with the object so it's not only cosmetic animation.
+	</p>
+	<p>Extermination</p>
+	<p>
+		The extermination objective simply set a goal of required enemies to eliminate, it could be set as a number or set to use the currently alive enemies from the enemy team. Becuase of how simple this objective was 
+		the progress tracking was made using an Engine (with the ability to change the progress via a unit) which would automatically decrease the remaining count when a player died.
+	</p>
+	<p>Escort</p>
+	<p>
+		The escort objective by itself was a parent entity which held information about the escort target, wich simply was a ally AI player machine with a custom behaviour tree. It would contain dev only blocks to make 
+		it look different from other machines.
+	</p>
+ </div>
+<p class="greenEntry">Documentation:</p>
+ <button type="button" class="collapsible">Expand.</button>
+ <div class="collapsible-content">
+	<br>
+	<p>
+		This task of creating visual scripting system and PvE objectives was originally only created by me and Gabriel Keny (Senior Designer) I had to ensure anyone who would be added to this task will be able to 
+		quickly learn the workflow and know how to add more features and units to the project.
+	</p>
+	<p>
+		For this I've written extensive documentation on how to create new custom units, add new interfaces to inject data into said units, good practises to follow while doing so and quirky features/problems I've run into
+		for people to avoid the same mistaken, issues I have encountered. In addition to that I've documented how each custom unit I've written works along with any inputs/outputs and modifiers these units have and what they do.
+		This came in very handy when we hired a techincal designer to create base systems for us to expand on.
+	</p>
+	<p>
+		All documentation was written in Confluence.
+	</p>
+</div>
+<p class="greenEntry">Optimisations:</p>
+ <button type="button" class="collapsible">Expand.</button>
+ <div class="collapsible-content">
+	<br>
+	<p>Block Destruction</p>
+	<p>
+		When testing how the game runs in a PvE setting I noticed that the way we handle current destruction was very inneficient and created big lag spikes. As the PvE gamemode was focused on battles with more machines
+		than a player would encounter ine PvP this was a big problem. The issue was caused by technical limitations of Svelto ECS and it's usage of entity groups. We use those groups as states, so if a block was destroyed 
+		its group was swapped to a destroyed group. With small entities that don't have many components this is a fast operation but in RB2 blocks were the most complex entity we had, with many many components. In addition
+		to the amount of block entities being destroyed at once the group swap took a very long time (up to 150ms). All components on that entity had to be moved to another dictionary, per entity, which greatly increased the time.
+		This action happened on the server, and then was sent to the client to be repeated.
+	</p>
+	<p>
+		To solve this issue I removed the group swap on block entities. Which sounds easy but it caused another problem, how will engines react on a group swap which doesn't exist anymore? Well I created a container which held 
+		information of all destroyed and not destroyed blocks as a hashset, with two dictionaries for "group swap" callbacks. Now any engine which had to react on a block swapping groups would register to a class that would invoke
+		a method providing the blocks that swapped groups that frame. It would provide the group of that block (for engines that only cared for a specific block like a seat or a gun for example) alongside an array with those block indices.
+		They could then query components and use those indices to only iterate those blocks.
+	</p>
+	<p>
+		To keep the timing of those callbacks as close as they were with traditional Svelto "IReactOnSwap" callbacks, I would gather all swapped entities at the very end of the deterministic frame after all engines ran and invoke the callbacks.
+		This worked perfectly, allowing for massive destruction with increased performance, the new callbacks took up to 15-20ms which also included creation of cosmetic blocks from the destruction which were another big performance bottleneck.
+		Lastly we had to think about the networking side of this solution, as all swaps were synced to the client in out framework I had to react to these callbacks on the server and sync each entity to the client. All I had to sync
+		was a "isDestroyed" boolean which is only a byte and we saw that it was much better in terms of data sent than a group swap. The client would run the same logic as the server but only by iterating all entities that were network 
+		synced that frame (another hashset I had to add an inject into the engine as previously we had no need to iterate only synced entities).
+	</p>
+	<p>
+		To conclude this removed one of the biggest lag spikes in our game by reducing the destruction frame time from around 150ms to 15ms on a big T10 robot (T10 is the biggest machine one can create in RB2).
+	</p>
+	 <p>
+	  AI Machine Pooling
+	 </p>
+	 <p>
+		Another issue I encountered when testing PvE was with creation of AI. Creating a machine takes a long time, to deserialize a T10 machine it takes over 200ms not including addition of those entities into the database.
+		In PvP we cannot do much about this process, each player machine is different and therefore we can't reuse those entities. But in PvE AI players often use the same machine. So I decided to pool machines that will be reused by
+		other AI players. I can check if our machine cach data (containing pure array of byte data of the machine) already has the machine, this means we can check if there are any avalible machine in the pool for the player to use that
+		match that machines FactoryID (unique ID based on the machine data, so two machines with the same byteData would have the same factoryID).
+	 </p>
+	 <p>
+		First approach was to swap the machine entity group into a pool group (because it's a simple entity this swap is very fast). I would then iterate through all of the entities belonging to that machine (using a filter) and 
+		swap the rigidbody, connections (entities representing block connections) and the block entities into their own pool group. When reassinging the machine I would iterate through those entities, assign the new owning player and 
+		swap the group back to the entity original group.
+	 </p>
+	 <p>
+		Second approach: As I mentioned before block entity swaps are very expensive on a large scale, so my second approach removed that swap, instead each block would be destroyed instead (using previously mentioned optimization). 
+		In addition to that I could not swap machine connections as they are based on the blocks which would be destroyed so we could avoid that swap. This worked fairly well, the pooling worked reducing the 200ms deserialization time to 
+		a simple quick reassignment taking around 17ms.
+	 </p>
+	 <p>
+		Last solution: The only problem remaining was the fact that engines which needed to iterate through blocks had to check if a block was destroyed in order to skip performing logic on that entity. This is fine if we have a set 20 machines
+		in the game at one time (PvP). But when we put 99 T10 Machines into the pool (stress test, not an actual requirement for pooled machine count), those engines take longer to iterate through entities, instead of iterating 10 blocks it will
+		include the remaining 900 ones that are destroyed because they are waiting to be reused, this would add at least 8ms per frame. To avoid that the container created for holding destroyed blocks has a dictionary containing all active blocks. This way an engine can request
+		to get the indices of active blocks in that specific group of entities and only iterate through those indices. This is a readonly list of indices, the only place it can be modified is the container itself. This solution fixed all the issues,
+		where we finally could deactive a block entity and it would not be iterated on by any engine. Thanks to this we can reuse machines and the creation time was insignificant. The next step for this was to wrap the svelto query in the container 
+		to make it easier for people to write code but sadly I did not have time for the last improvement.
+	 </p>
+</div>
+<h2 class="greenEntry" id="Scoreboard">Scoreboard.</h2>
+<p>
+I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code implementation to gather player scores and the UI prefab integration and functionality.
+</p>
+ <center>
+	<video width="640" height="320" controls>
+	  <source src="Images/Robocraft2/Scoreboard.mp4" type="video/mp4">
+	</video>
+</center>
+<br>
+ <button type="button" class="collapsible">Expand.</button>
+ <div class="collapsible-content">
+	<br>
+	<p>
+		The scoreboard UI data is supplied by GUI engine created to sync entity data and using SveltoGUI to inject WidgetDataSource dictionary of said scoreboard with the correct data for the score as well as player cosmetics.
+		When a player joins the game a scoreboard panel entity is created for them, it will contain the player's username, avatar, frame and banner data alongside their score. As per design when a player leaves their data is 
+		locked on the scoreboard and greyed out slightly as to indicate that the player is no longer connected to the server. Each score category can be used to sort the scoreboard in both orders allowing player to 
+		customise it for their own needs during gameplay.
+	</p>
+	<p>
+		Most importantly, how do we sync each players score data as to not send too much data over the network each frame? Well to do that I created a custom network message. The player scores were separated into byte scores (full number
+		scores that would not exceed 255, like kills and objectives) and ushort scores (less precise yet still more detailed scores like damage and healing). Because we want to limit the amount of data we use bytes and ushorts instead of ints and floats.
+		Now the message contains two hashmaps of playerID to "headerValue" these maps indicate which player had which score in said category changed. So if player 1 changed score in healind and damage the value of that ushort dictionary
+		would indicate that based on the bitshifting that was done to that value, as it would correspond with the enum category of the ushort scores. This way only one ushort (or byte, depending on how many categories there is) is needed to 
+		be sent per player to know which scores changed. The message then also contains two hashmaps of playerID to another dictionary of "scoreCategory" to value. So we can read the changedScore hashmap to determine if we have to 
+		write/read the second hashset containing the actual score values. This way we only send changed scores to other players.
+	</p>
+	<p>
+		In addition to only sending changed score values and not all of them, we limit the message to be send every second not frame, and only if scores have changed (with the only exception of sending a full score message to players who backfilled
+		into the game server as they need all scores). The creation of those messages is also put in a job and bursitfied, so I used native containers to hold the data "NativeHashMap" and "SharedSveltoDictionatyNative". So this message is created fast,
+		serialized/deserialized and read extreamly fast and it's small, not impacting the network in a big way.
+	</p>
+</div>
+<h2 class="greenEntry" id="BlockForge">Block Forge.</h2>
+<p>
+	Block Forge is a currency exchange terminal where players can create and recycle blocks based on their recipes and resources.
+</p>
+ <center>
+	<video width="640" height="320" controls>
+	  <source src="Images/Robocraft2/BlockForge.mp4" type="video/mp4">
+	</video>
+</center>
+<br>
+ <button type="button" class="collapsible">Expand.</button>
+ <div class="collapsible-content">
+	<br>
+	<p>
+		The core of the Block Forge is the BlockForgeResourceManager which holds and manages all the player needs. When initialized it requests the players recipes from the backend and caches them. Every time the player opens the Forge
+		if the cache is dirty it will request the data again. This way we limit the amount of request from the backend. This recipe data was structured in a way that is easy for me to read and for our backend programmer to organize.
+		Each player has recipes for currencies with multiple requirements and returns of that recipe. This way you can use the same request to "purchase" a block to create a block from resources as well as destroy a block to recieve 
+		resources. We call it the Atomizer mode.
+	</p>
+	<p>
+		Because we cache players backend data to reduce the request amount we can verify on the client if player has enough currency to buy a block or not. Now the backend request does the same to avoid people modifying client data
+		and buying everything but with this added layer the backend can rest easy and only do work when absolutely needed.
+	</p>
+	<p>
+		Each slot in the forge is created dynamically based on the recipe data and using SveltoGUI. This way I can modify the GUI data without having to recreate each slot every time a blocks' amount in the player inventory changes.
+		I created many commands that are put onto the GUI prefabs which determine what block/currency is added/removed from the basket. In addition to that the Atomizer mode (triggered using the toggle in top right) is serpareted from 
+		the default forge so players can modify both baskets independently. To increase the performance of this screen both lists of slots are also separated. This decreased the time to load the data and prefabs.
+	</p>
+	<p>
+		Lastly this manager also handeles setting the correct prefab data to display currently selected slot holograms. A seprarate engine manages the animation in the background of sending the currently crafted blocks across the forge.
+		So players can craft more blocks, which will be added onto the animation queue. And when changing the forge mode to atomizer I change the animation state to red.
+	</p>
+</div>
+<h2 class="greenEntry" id="Conversion">Entity Conversion System.</h2>
+	<center>
+	<img src="Images/Robocraft2/EntityConversionSystemExample.png" width="40%" heigh="40%">
+	</center>
+<button type="button" class="collapsible">Expand.</button>
+<div class="collapsible-content">
+	<br>
+	<p>
+		I was asked to figure out how we can place spawn points in the scene which will spawn players in the game. We already had spawn point entities but now we had a different way of creation maps in the game.
+	</p>
+	<p>
+		Creating an entity is split into two things, first is the creation of the core entity which will return an EntityInitializer which can be used to initialize components of that entity with the correct data.
+		So I created a EntityConverterBase which has abstract BuildEntity/RemoveEntity functions. This allows anyone to create a class which will inherit from the Converter and they can specify which entity they want to build.
+		To fill the component data I created another abstract class SveltoComponentBaker, which has a single function Bake to which I pass the entityInitializer of the entity. Now the Converter has a list of those bakers. So we can
+		create a prefab, add the EntityConverter component on, along with any baker we want. It can be a generic transform baker which will fill the position and rotation components or something specific to that entity. Each baker is 
+		assigned into the list of bakers on the Converter.
+	</p>
+	<p>
+		How do we call all thos abstract methods? Well I wrote an engine that reacts to a scene being loaded, then iterate through all objects with the EntityConverterBase class. If we find one we call the BuildEntity function and iterate
+		through the list of bakers and call the Bake function on them. Not this also allows us to create custom interfaces which can be used to inject specific data into the bakers. For example IPropPhysicsBaker will inject the physicsResourceManager
+		to the baker before the Bake function is called.
+	</p>
+	<p>
+		Cleanup is very important that's why we have the RemoveEntity abstract function on each EntityConverter. When a scene is unloaded we iterate again through each Converter and remove that entity that was created.
+	</p>
+	<p>
+		Lastly I created a Client and Server versions of both the converters and engines which call the functions, this way we can either create a server only entity or client only. Or both!
+	</p>
+</div>
+<h2 class="greenEntry" id="Rectify">Rectify.</h2>
+<br>
+<div>
+    <img src="Images/Robocraft2/RectifyV1.gif" width="100%" height="100%">
+	<center>
+	<video width="640" height="320" controls>
+		<source src="Images/Robocraft2/RectifyV2.mp4" type="video/mp4">
+	</video>
+</center>
+</div>
+<br>
+<p>
+	Rectify is a simple ability to reposition a players machine upright on a short cooldown. I've made two versions of this ability first one was fully physics based and it would flip the player's machine 
+	in any free direction as so it would always land on the wheels. With combination of box casts, checking which direction is free and unobstructed (if none it will flip in place) and would apply just enough
+	force to flip the machine (video 1). The second version applies a kinematic force which lifts the machine up, rotates it and gently places it down. Both versions are data driven so designers can adjust the forces,
+	timing, and rotations as they please.
+</p>
+<h2 class="greenEntry" id="WeaponSwitch">Weapon Switching.</h2>
+<br>
+<center>
+	<video width="640" height="320" controls>
+		<source src="Images/Robocraft2/WeaponSwitching.mp4" type="video/mp4">
+	</video>
+</center>
+<br>
+<p>
+	Weapon Switching works by selecting only one weapon bank as the active bank. This is done by having a "currentlySelectedBankIndex" value on the machine. You can change this value by selecting one of 3 (you can only have 3 weapon banks)
+	buttons which would change that value. Weapons from inactive banks have their lookAt point set at a const forward distance from the machine forward vector to look as inactive. Any bank which is not selected does not get their input values
+	changed so only the active weapon bank weapons can read the fire/aim inputs.
+</p>
+<p>
+	I've also implemented the UI for this feature which dynamically reads all banks and creates the bank icons on the player HUD with the icon being the highest tier of weapon from that bank. The selected bank has the icon highlighted and 
+	if a bank has no active weapons the icon becomes greyed out.
+</p>
+<h2 class="greenEntry" id="Mentions">Honourable mentions.</h2>
+<br>
+<p>
+	I could write much more about other features I've created while working on Robocraft2 and I am more than happy to talk about them in detail on request!
+</p>
+<ul>
+   <li>Fly Camera for marketing.</li>
+		<ul>
+			<li>Development tool enabled on special builds to allow marketing to join multiplayer games and record videos by using the fly camera and gamepad controls for smoother movement.</li>
+		</ul>
+   <li>Cinematic transition when coming into multiplayer.</li>
+		<ul>
+			<li>Drop pod count changes based on squad players count.</li>
+			<li>Custom planet backdrop based on which map the game loads into.</li>
+		</ul>
+    <li>Build bay size changes.</li>
+		<ul>
+			<li>Change scenes when player upgrades their bay.</li>
+			<li>Rebuild GUI entities on scene change allowing GUI entities to be also baked in the scene.</li>
+		</ul>
+	<li>Original gamepad support in multiplayer.</li>
+		<ul>
+			<li>Implementing gamepad support for both on foot and in machine gameplay.</li>
+			<li>Different controller maps based on player preference and gamemode (on foot/machine).</li>
+			<li>Sensitivity curve implementation.</li>
+		</ul>
+	<li>Cosmetic block variants.</li>
+	<li>Robot ranking system alongside GUI.</li>
+	<li>Menu navigation wheel.</li>
+	<li>CoM Display.</li>
+	<li>Galaxy cash shop gifting.</li>
+	<li>And many more features alongside many many many bug fixes.</li>
+</ul>
 
   
   <br>
@@ -180,6 +483,22 @@
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
     captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  </script>
+  <script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
   }
   </script>
 
