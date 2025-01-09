@@ -257,7 +257,7 @@
 		synced that frame (another hashset I had to add an inject into the engine as previously we had no need to iterate only synced entities).
 	</p>
 	<p>
-		To conclude this removed one of the biggest lag spikes in our game by reducing the destruction frame time from around 150ms to 15ms on a big T10 robot (T10 is the biggest machine one can create in RB2).
+		To conclude this removed one of the biggest lag spikes in our game by reducing the destruction frame time from around <a style="text-decoration: none; color:lightblue;">150ms to 15ms </a> on a big T10 robot (T10 is the biggest machine one can create in RB2).
 	</p>
 	 <p>
 	  AI Machine Pooling
@@ -275,8 +275,8 @@
 	 </p>
 	 <p>
 		Second approach: As I mentioned before block entity swaps are very expensive on a large scale, so my second approach removed that swap, instead each block would be destroyed instead (using previously mentioned optimization). 
-		In addition to that I could not swap machine connections as they are based on the blocks which would be destroyed so we could avoid that swap. This worked fairly well, the pooling worked reducing the 200ms deserialization time to 
-		a simple quick reassignment taking around 17ms.
+		In addition to that I could not swap machine connections as they are based on the blocks which would be destroyed so we could avoid that swap. This worked fairly well, the pooling worked reducing the <a style="text-decoration: none; color:lightblue;">
+		200ms </a> deserialization time to a simple quick reassignment taking around <a style="text-decoration: none; color:lightblue;"> 17ms </a>.
 	 </p>
 	 <p>
 		Last solution: The only problem remaining was the fact that engines which needed to iterate through blocks had to check if a block was destroyed in order to skip performing logic on that entity. This is fine if we have a set 20 machines
