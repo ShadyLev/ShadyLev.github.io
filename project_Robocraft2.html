@@ -140,10 +140,6 @@
     <h3>14-21</h3>
   </div>
   <div style="display: inline-block; padding-left: 15px;">
-    <h3 class="greenEntry">Development time:</h3>
-    <h3>In development</h3>
-  </div>
-  <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Download:</h3>
     <a style="text-decoration: none;" href="https://store.steampowered.com/app/301520/Robocraft/" target="_new"><h3>Steam</h3></a>
   </div>
@@ -158,12 +154,21 @@
     <li><a style="text-decoration: none; color:white;" href="#WeaponSwitch">Weapon Switching</a></li>
 	<li><a style="text-decoration: none; color:white;" href="#Mentions">Honourable Mentions</a></li>
   </ul>
+  
+    <h2 class="greenEntry">Skills:</h2>
+  <ul>
+    <li>C# Svleto ECS</li>
+    <li>Utilizing Unity Jobs System (Multi-Threaded Code)</li>
+    <li>Creating features using Client-Server Architecture</li>
+    <li>Using Unity Profiler to identify and optimize performance bottlenecks</li>
+    <li>UI Feature Implementations</li>
+    <li>Adding Unity Analytics</li>
+    <li>In-Game Purchases and Gifting using Steam API</li>
+  </ul>
 
   <h1 class="greenEntry">Details</h1>
   <hr class="rounded">
 
-<<<<<<< HEAD
-=======
   <h2 class="greenEntry" id="PvE">PvE Gamemode (Unreleased).</h2>
   <p> As part of the full release of Robocraft 2, we planned to include various PvE gamemodes for players to enjoy in a CO-OP way. These gamemodes differed from our normal PvP bu having increased AI count,
   specially created objectives and reworked gameplay systems.
@@ -209,19 +214,19 @@
 	   <li>Extermination Objective (Kill X amount of enemies).</li>
 	   <li>Escort Objective.</li>
 	</ul>
-	<p>Attack/Defend</p>
+	<p><p><a style="text-decoration: none; color:lightblue;">Attack/Defend</a></p>
 	<p>
 		Firstly the attack and defend objectives were new physics entities that would be spawned in the world using a custom Unit. Becasue on base these objectives are just structures that can be damaged and have health
 		and a team value they function the same way (Defend objective on your team, attack objective on enemy team). These enties had a rigidbody and could be set as static or moved via a custom unit to set entity position.
 		They would also animate on activation, but because the graph was server side and the object itself was rendered on the client I created a very simple data driven animation system to allow animation of object on 
 		the server by writing simple animation frames that would lerp the position and rotation of the object. The benefit of that is the colliders are also moving with the object so it's not only cosmetic animation.
 	</p>
-	<p>Extermination</p>
+	<p><p><a style="text-decoration: none; color:lightblue;">Extermination</a></p>
 	<p>
 		The extermination objective simply set a goal of required enemies to eliminate, it could be set as a number or set to use the currently alive enemies from the enemy team. Becuase of how simple this objective was 
 		the progress tracking was made using an Engine (with the ability to change the progress via a unit) which would automatically decrease the remaining count when a player died.
 	</p>
-	<p>Escort</p>
+	<p><p><a style="text-decoration: none; color:lightblue;">Escort</a></p>
 	<p>
 		The escort objective by itself was a parent entity which held information about the escort target, wich simply was a ally AI player machine with a custom behaviour tree. It would contain dev only blocks to make 
 		it look different from other machines.
@@ -248,7 +253,7 @@
  <button type="button" class="collapsible">Expand.</button>
  <div class="collapsible-content">
 	<br>
-	<p>Block Destruction</p>
+	<p><p><a style="text-decoration: none; color:lightblue;">Block Destruction</a></p>
 	<p>
 		When testing how the game runs in a PvE setting I noticed that the way we handle current destruction was very inneficient and created big lag spikes. As the PvE gamemode was focused on battles with more machines
 		than a player would encounter ine PvP this was a big problem. The issue was caused by technical limitations of Svelto ECS and it's usage of entity groups. We use those groups as states, so if a block was destroyed 
@@ -272,9 +277,7 @@
 	<p>
 		To conclude this removed one of the biggest lag spikes in our game by reducing the destruction frame time from around <a style="text-decoration: none; color:lightblue;">150ms to 15ms </a> on a big T10 robot (T10 is the biggest machine one can create in RB2).
 	</p>
-	 <p>
-	  AI Machine Pooling
-	 </p>
+	<p><p><a style="text-decoration: none; color:lightblue;">AI Machine Pooling</a></p>
 	 <p>
 		Another issue I encountered when testing PvE was with creation of AI. Creating a machine takes a long time, to deserialize a T10 machine it takes over 200ms not including addition of those entities into the database.
 		In PvP we cannot do much about this process, each player machine is different and therefore we can't reuse those entities. But in PvE AI players often use the same machine. So I decided to pool machines that will be reused by
@@ -313,12 +316,14 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
  <button type="button" class="collapsible">Expand.</button>
  <div class="collapsible-content">
 	<br>
+	<p><p><a style="text-decoration: none; color:lightblue;">UI</a></p>
 	<p>
 		The scoreboard UI data is supplied by GUI engine created to sync entity data and using SveltoGUI to inject WidgetDataSource dictionary of said scoreboard with the correct data for the score as well as player cosmetics.
 		When a player joins the game a scoreboard panel entity is created for them, it will contain the player's username, avatar, frame and banner data alongside their score. As per design when a player leaves their data is 
 		locked on the scoreboard and greyed out slightly as to indicate that the player is no longer connected to the server. Each score category can be used to sort the scoreboard in both orders allowing player to 
 		customise it for their own needs during gameplay.
 	</p>
+	<p><p><a style="text-decoration: none; color:lightblue;">Message Networking</a></p>
 	<p>
 		Most importantly, how do we sync each players score data as to not send too much data over the network each frame? Well to do that I created a custom network message. The player scores were separated into byte scores (full number
 		scores that would not exceed 255, like kills and objectives) and ushort scores (less precise yet still more detailed scores like damage and healing). Because we want to limit the amount of data we use bytes and ushorts instead of ints and floats.
@@ -429,6 +434,11 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
 	I've also implemented the UI for this feature which dynamically reads all banks and creates the bank icons on the player HUD with the icon being the highest tier of weapon from that bank. The selected bank has the icon highlighted and 
 	if a bank has no active weapons the icon becomes greyed out.
 </p>
+<p><a style="text-decoration: none; color:lightblue;">Crosshairs</a></p>
+<p>
+	Lastly I implemented a system to assign a crosshair to a weapon in data which would be displayed when selecting a weapon. Each crosshair could have its own custom implementation without conflicting with other weapon types.
+	In addition in the Legacy version of the game I implemented "aimpoint", circles showing where weapons are aiming in the world (similar to War Thunder).
+</p>
 <h2 class="greenEntry" id="Mentions">Honourable mentions.</h2>
 <br>
 <p>
@@ -463,8 +473,7 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
 	<li>And many more features alongside many many many bug fixes.</li>
 </ul>
 
-  
->>>>>>> 6160a69c5f70a9967dbad51e090c1e804fd228c6
+ 
   <br>
   <br>
 </div>
