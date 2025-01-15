@@ -124,10 +124,17 @@
     
     You're not the first and you won't be the last... Good luck!
   </p>
+  <center>
+    <p>Click To Skip</p>
+    <ul>
+		<li><a style="text-decoration: none; color:white;" href="#Unity">Unity Implementation</a></li>
+		<li><a style="text-decoration: none; color:white;" href="#Unreal">Unreal Implementation</a></li>
+	</ul>
+  </center>
 
   <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Engine:</h3>
-    <h3>Unity</h3>
+    <h3>Unity/UE5</h3>
   </div>
   <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Platform:</h3>
@@ -139,7 +146,7 @@
   </div>
   <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Development time:</h3>
-    <h3>1 month</h3>
+    <h3>1 month (Unity)/ 8h (UE5)</h3>
   </div>
   <div style="display: inline-block; padding-left: 15px;">
     <h3 class="greenEntry">Project files:</h3>
@@ -164,10 +171,12 @@
   <hr class="rounded">
   <center>
     <h1 class="greenEntry">Gameplay presentation:</h1>
+	<h2 class="greenEntry">Unity C#</h2>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/Az242J_Yf5w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </center>
+    <h2 class="greenEntry">UE5 C++</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gZtdnrvxgCA?si=xthAdCNfTW6ooQh1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  </center>
 
-  <h1 class="greenEntry">Details</h1>
+  <h1 class="greenEntry" id="Unity">Details (Unity / C#)</h1>
   <hr class="rounded">
 
   <h2 class="greenEntry" id="keybindings">Scanner mechanic</h2>
@@ -191,6 +200,48 @@
   Your browser does not support the video tag.
   </video>
   </center>
+  
+  <h1 class="greenEntry" id="Unreal">Details (UE5 / C++)</h1>
+  <hr class="rounded">
+
+  <h2 class="greenEntry" id="keybindings">Scanner mechanic</h2>
+  <p> The main mechanic is very similar to how it was implemented in Unity with a big (and obvious) difference in the Particle System. 
+  </p>
+  <p>
+	In UE5 I created a very simple Niagara System which has two input arrays, one for particle position and one for particle color (Vector/LinearColor). These arrays are then read to apply both position and colour on submission.
+	So all we have to do in code is to create the NiagaraComponent, Activate it and feed the correct ArrayData into the values:
+  </p>
+  <center>
+    <img src="Images/LostLab/NiagaraCreationAndUsage.png" width="80%" heigh="80%">
+  </center>
+	<p>
+	But how do I get the particle data? The normal scan implementation is the same as the Unity one, however the Big Scan differs a bit. 
+	</p>
+	<p>
+	Firstly when the scan begins I update the ScanAngle based on the ScanRate and call ShootBigScanRays method <a style="text-decoration: none; color:lightblue;">(Figure 1)</a>.
+	I create two arrays (one for particle positions, one for particle colours).
+	Next I get the horizontal step per ray as we want to shoot these rays inside provided angle. We then iterate through the amount of rays <a style="text-decoration: none; color:lightblue;">(Figure 2)</a>
+	we want to shoot horizontally and add a small random deviation (just to look good, as 
+	uniform placement looked too uncanny). RotateRayObjectsToAngle <a style="text-decoration: none; color:lightblue;">(Figure 3)</a> will rotate the reference object based on provided max angle, the vertical angle and degrees the ray should shoot in. It will perform a LineTrace and return the result.
+	Becasue we passed in the HitResult as a reference if we return true we can still access the LineTrace result with the correct information. And Lastly we update the NiagaraSystem with the new point data. Next frame we will increase/decrease
+	the VerticalScanAngle to run the function again.
+	</p>
+	<center>
+		<img src="Images/LostLab/BigScanUpdate.png" width="40%" heigh="40%">
+		<figcaption>Figure 1.</figcaption>
+	</center>
+	<center>
+		<div class="grid-container" style="grid-template-columns: repeat(2,1fr);">
+		  <div class="grid-element">
+			<img src="Images/LostLab/BigScanMethod.png" width="80%" heigh="80%">
+			<figcaption>Figure 2.</figcaption>
+		  </div>
+		  <div class="grid-element">
+			<img src="Images/LostLab/RotateMethod.png" width="80%" heigh="80%">
+			<figcaption>Figure 3.</figcaption>
+		  </div>
+		</div>
+	</center>
 
   <br>
   <br>
