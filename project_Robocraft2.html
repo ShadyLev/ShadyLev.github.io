@@ -179,25 +179,23 @@
  <div class="collapsible-content">
 	<br>
 	 <p>
-		To implement Visual Scripting in out Unity project we decided to use Unity's built-in solution (Visual Scripting package based on the Bolt package).
-		With this package I could create custom Units (Nodes) which would then be used by designers to create gameplay logic but before that happened I had to
-		integrate our framework (Svelto ECS) to be able to use systems in these custom Units.
+		To implement Visual Scripting in our Unity project, we decided to use Unity's built-in solution (the Visual Scripting package based on the Bolt package). 
+		With this package, I could create custom units (nodes) that designers could use to create gameplay logic. 
+		However, before this could happen, I had to integrate our framework (Svelto ECS) to allow the use of systems within these custom units.
 	</p>
 	<p>
-		To do this I used interfaces that would inject necessary systems into the Units, as the graphs would be places on a gameobject in the scene I reacted to a scene
-		being created to then search for a tag component. This component then allowed me to iterate the child GO and find all graphs.
-		For each graph I gathered all the Units in it (in case of nested graphs I would recursivly iterate the Units to find all) and then injected whatever field they needed,
-		based on the interfaces they implemented.
-		This allows for me to query, create, remove and manipulate data of any entity I wanted without the need to write an engine (ECS System) for it.
+		To do this, I used interfaces to inject the necessary systems into the units. Since the graphs would be placed on a GameObject in the scene, I reacted to the scene being created and
+		then searched for a tagged component. This component allowed me to iterate through the child GameObjects and find all the graphs. 
+		For each graph, I gathered all the units within it (in the case of nested graphs, I recursively iterated through the units to find all of them) 
+		and injected any required fields based on the interfaces they implemented. This approach allowed me to query, create, remove, and 
+		manipulate data of any entity without the need to write a dedicated engine (ECS system) for it.
 	</p>
 	<p>
-		I also had to create custom event units for gameplay events like player death or damage. But more importantly to keep the logic in sync with out engines I called the
-		update event on the deterministic frame during which out gameplay logic ran at. If a unit needed to perform some logic that had to be executed at a specific timing, for
-		example raycasting (ran at a sync frame with DOTS to ensure all physics entities are included),	it could use ECSRequests.
-		ECSRequests allow to create a request which will be processed by a dedicated engine to perform an action based on request data.
-		You can poll a request to check if it is done, so units with such request are run as a coroutine as a request can take multiple frames to complete.
-		One example of ECSRequest usage was to check if a position was in sight of enemy team players. I would simply create a request, supply the float3 position to check and wait to see
-		if the result was true or false.
+		I also had to create custom event units for gameplay events, such as player death or damage. More importantly, to keep the logic in sync with our engines, I called the
+		update event on the deterministic frame during which our gameplay logic ran. If a unit needed to perform logic that had to be executed at a specific timing (e.g., raycasting, which ran on a 
+		synchronized frame with DOTS to ensure all physics entities were included), it could use ECSRequests. ECSRequests allow you to create a request that will be processed by a dedicated engine 
+		to perform an action based on the request data. You can poll a request to check if it is done, so units with such requests are run as coroutines, as a request can take multiple frames to complete.
+		One example of ECSRequest usage was checking if a position was in sight of enemy team players. I would simply create a request, supply the float3 position to check, and wait to see if the result was true or false.
 	 </p>
  </div>
  <p class="greenEntry">PvE Objectives:</p>
@@ -205,10 +203,10 @@
  <div class="collapsible-content">
 	<br>
 	<p>
-		Creating the Visual Scripting system was the base to create gameplay objectives designers could set up. I created the first 4 challenges based on provided design documents on Confluence 
-		and with close collaboration with the design team.
-		Each objective was a unique entity but sharing the base descriptor with logic that is common amongst them (base details about the objective type, is it active or not etc.)
-		With that these objectives could be created using their own factory which was injected as needed to a custom unit.
+		Creating the Visual Scripting system served as the foundation for gameplay objectives that designers could set up. 
+		I created the first four challenges based on the provided design documents in Confluence, working closely with the design team.
+		Each objective was a unique entity, but shared a base descriptor with logic that was common across them (e.g., base details about the objective type, whether it is active, etc.).
+		This allowed the objectives to be created using their own factory, which was injected as needed into a custom unit.
 	</p>
 	<ul>
 	   <li>Attack/Defend Objectives.</li>
@@ -217,20 +215,21 @@
 	</ul>
 	<p><p><a style="text-decoration: none; color:lightblue;">Attack/Defend</a></p>
 	<p>
-		Firstly the attack and defend objectives were new physics entities that would be spawned in the world using a custom Unit. Becasue on base these objectives are just structures that can be damaged and have health
-		and a team value they function the same way (Defend objective on your team, attack objective on enemy team). These enties had a rigidbody and could be set as static or moved via a custom unit to set entity position.
-		They would also animate on activation, but because the graph was server side and the object itself was rendered on the client I created a very simple data driven animation system to allow animation of object on 
-		the server by writing simple animation frames that would lerp the position and rotation of the object. The benefit of that is the colliders are also moving with the object so it's not only cosmetic animation.
+		The attack and defend objectives were new physics entities that would be spawned in the world using a custom unit. 
+		Since these objectives were essentially structures that could be damaged, had health, and a team value, they functioned the same way (defend objectives for your team, attack objectives for the enemy team).
+		These entities had a rigidbody and could be set as static or moved via a custom unit to adjust their position. They would also animate upon activation.
+		However, because the graph was server-side and the object itself was rendered on the client, I created a simple data-driven animation system to allow server-side animation of the object.
+		This system would use simple animation frames to lerp the position and rotation of the object. The benefit of this approach is that the colliders also move with the object, so it's not just a cosmetic animation.
 	</p>
 	<p><p><a style="text-decoration: none; color:lightblue;">Extermination</a></p>
 	<p>
-		The extermination objective simply set a goal of required enemies to eliminate, it could be set as a number or set to use the currently alive enemies from the enemy team. Becuase of how simple this objective was 
-		the progress tracking was made using an Engine (with the ability to change the progress via a unit) which would automatically decrease the remaining count when a player died.
+		The extermination objective simply set a goal for the required number of enemies to eliminate. It could be set as a fixed number or be based on the currently alive enemies from the enemy team. 
+		Due to the simplicity of this objective, progress tracking was implemented using an engine (with the ability to change progress via a unit), which would automatically decrease the remaining count when a player died.
 	</p>
 	<p><p><a style="text-decoration: none; color:lightblue;">Escort</a></p>
 	<p>
-		The escort objective by itself was a parent entity which held information about the escort target, wich simply was a ally AI player machine with a custom behaviour tree. It would contain dev only blocks to make 
-		it look different from other machines.
+		The escort objective, by itself, was a parent entity that held information about the escort target, which was simply an ally AI player machine with a custom behavior tree. 
+		It would also contain developer-only blocks to make it appear different from other machines.
 	</p>
  </div>
 <p class="greenEntry">Documentation:</p>
@@ -242,9 +241,9 @@
 		quickly learn the workflow and know how to add more features and units to the project.
 	</p>
 	<p>
-		For this I've written extensive documentation on how to create new custom units, add new interfaces to inject data into said units, good practises to follow while doing so and quirky features/problems I've run into
-		for people to avoid the same mistaken, issues I have encountered. In addition to that I've documented how each custom unit I've written works along with any inputs/outputs and modifiers these units have and what they do.
-		This came in very handy when we hired a techincal designer to create base systems for us to expand on.
+		To achieve this, I wrote extensive documentation on how to create new custom units, add new interfaces to inject data into these units, best practices to follow, and quirky features or problems I encountered,
+		so others could avoid the same mistakes and issues. Additionally, I documented how each custom unit I created worked, including their inputs, outputs, and modifiers, as well as what they do. 
+		This documentation proved invaluable when we hired a technical designer to create base systems for us to expand on.
 	</p>
 	<p>
 		All documentation was written in Confluence.
@@ -319,24 +318,32 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
 	<br>
 	<p><p><a style="text-decoration: none; color:lightblue;">UI</a></p>
 	<p>
-		The scoreboard UI data is supplied by GUI engine created to sync entity data and using SveltoGUI to inject WidgetDataSource dictionary of said scoreboard with the correct data for the score as well as player cosmetics.
-		When a player joins the game a scoreboard panel entity is created for them, it will contain the player's username, avatar, frame and banner data alongside their score. As per design when a player leaves their data is 
-		locked on the scoreboard and greyed out slightly as to indicate that the player is no longer connected to the server. Each score category can be used to sort the scoreboard in both orders allowing player to 
-		customise it for their own needs during gameplay.
+		The scoreboard UI data is supplied by a GUI engine created to sync entity data, using SveltoGUI to inject the WidgetDataSource dictionary for the scoreboard with the correct data,
+		including scores and player cosmetics. When a player joins the game, a scoreboard panel entity is created for them. 
+		This panel contains the player's username, avatar, frame, and banner data, as well as their score. As per design, when a player leaves, their data is locked on the scoreboard and slightly greyed 
+		out to indicate that the player is no longer connected to the server. Each score category can be used to sort the scoreboard in both ascending and descending orders,
+		allowing players to customize it for their needs during gameplay.
 	</p>
 	<p><p><a style="text-decoration: none; color:lightblue;">Message Networking</a></p>
 	<p>
-		Most importantly, how do we sync each players score data as to not send too much data over the network each frame? Well to do that I created a custom network message. The player scores were separated into byte scores (full number
-		scores that would not exceed 255, like kills and objectives) and ushort scores (less precise yet still more detailed scores like damage and healing). Because we want to limit the amount of data we use bytes and ushorts instead of ints and floats.
-		Now the message contains two hashmaps of playerID to "headerValue" these maps indicate which player had which score in said category changed. So if player 1 changed score in healind and damage the value of that ushort dictionary
-		would indicate that based on the bitshifting that was done to that value, as it would correspond with the enum category of the ushort scores. This way only one ushort (or byte, depending on how many categories there is) is needed to 
-		be sent per player to know which scores changed. The message then also contains two hashmaps of playerID to another dictionary of "scoreCategory" to value. So we can read the changedScore hashmap to determine if we have to 
-		write/read the second hashset containing the actual score values. This way we only send changed scores to other players.
+		Most importantly, how do we sync each player's score data without sending too much data over the network each frame? To solve this, I created a custom network message. 
+		The player scores were separated into byte scores (full number scores that would not exceed 255, such as kills and objectives) and ushort scores 
+		(less precise yet more detailed scores, like damage and healing). Since we want to limit the amount of data, we use bytes and ushorts instead of ints and floats.
 	</p>
 	<p>
-		In addition to only sending changed score values and not all of them, we limit the message to be send every second not frame, and only if scores have changed (with the only exception of sending a full score message to players who backfilled
-		into the game server as they need all scores). The creation of those messages is also put in a job and bursitfied, so I used native containers to hold the data "NativeHashMap" and "SharedSveltoDictionatyNative". So this message is created fast,
-		serialized/deserialized and read extreamly fast and it's small, not impacting the network in a big way.
+		The message contains two hashmaps: one mapping playerID to "headerValue." These maps indicate which player's score in a given category has changed. 
+		For example, if Player 1's healing and damage scores changed, the value of the ushort dictionary would reflect that, based on the bit-shifting done to that value, 
+		which corresponds to the enum category of the ushort scores. This way, only one ushort (or byte, depending on the number of categories) needs to be sent per player to indicate which scores have changed.
+	</p>
+	<p>
+		The message also contains two hashmaps: one mapping playerID to another dictionary of "scoreCategory" to value. This allows us to read the changedScore hashmap and determine 
+		if we need to read/write the second hashmap containing the actual score values. By doing this, we only send the changed scores to other players.
+	</p>
+	<p>
+		In addition to only sending the changed score values (and not all of them), we limit the message to be sent every second, not every frame,
+		and only if scores have changed. The only exception is when sending a full score message to players who join the game server late, as they need all the score data.
+		The creation of these messages is also put into a job and burst-optimized. I used native containers to hold the data, specifically NativeHashMap and SharedSveltoDictionaryNative.
+		This ensures the message is created quickly, serialized/deserialized, and read extremely fast. It is also small, minimizing its impact on the network.
 	</p>
 </div>
 <h2 class="greenEntry" id="BlockForge">Block Forge.</h2>
@@ -353,23 +360,26 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
  <div class="collapsible-content">
 	<br>
 	<p>
-		The core of the Block Forge is the BlockForgeResourceManager which holds and manages all the player needs. When initialized it requests the players recipes from the backend and caches them. Every time the player opens the Forge
-		if the cache is dirty it will request the data again. This way we limit the amount of request from the backend. This recipe data was structured in a way that is easy for me to read and for our backend programmer to organize.
-		Each player has recipes for currencies with multiple requirements and returns of that recipe. This way you can use the same request to "purchase" a block to create a block from resources as well as destroy a block to recieve 
-		resources. We call it the Atomizer mode.
+		The core of the Block Forge is the BlockForgeResourceManager, which holds and manages everything the player needs. When initialized, it requests the player's recipes from the backend and caches them.
+		Every time the player opens the Forge, if the cache is dirty, it will request the data again. This approach helps limit the number of requests to the backend. 
+		The recipe data is structured in a way that is easy for me to read and for our backend programmer to organize. 
+		Each player has recipes for currencies with multiple requirements and returns. This allows the same request to be used to either "purchase" a block, create a block from resources, or destroy a block to receive resources.
+		We call this the Atomizer Mode.
 	</p>
 	<p>
-		Because we cache players backend data to reduce the request amount we can verify on the client if player has enough currency to buy a block or not. Now the backend request does the same to avoid people modifying client data
-		and buying everything but with this added layer the backend can rest easy and only do work when absolutely needed.
+		Because we cache the player's backend data to reduce request frequency, we can verify on the client whether the player has enough currency to buy a block. 
+		The backend request does the same, ensuring that players cannot modify client data and purchase everything. 
+		This added layer allows the backend to only do work when absolutely necessary.
 	</p>
 	<p>
-		Each slot in the forge is created dynamically based on the recipe data and using SveltoGUI. This way I can modify the GUI data without having to recreate each slot every time a blocks' amount in the player inventory changes.
-		I created many commands that are put onto the GUI prefabs which determine what block/currency is added/removed from the basket. In addition to that the Atomizer mode (triggered using the toggle in top right) is serpareted from 
-		the default forge so players can modify both baskets independently. To increase the performance of this screen both lists of slots are also separated. This decreased the time to load the data and prefabs.
+		Each slot in the Forge is created dynamically based on the recipe data and uses SveltoGUI. This way, I can modify the GUI data without having to recreate each slot every time the amount of a block in the player inventory changes.
+		I created many commands that are attached to the GUI prefabs, which determine what block or currency is added or removed from the basket.
+		Additionally, the Atomizer Mode (triggered by the toggle in the top-right corner) is separated from the default Forge, allowing players to modify both baskets independently.
+		To improve the performance of this screen, the two lists of slots are also separated, which reduces the time required to load data and prefabs.
 	</p>
 	<p>
-		Lastly this manager also handeles setting the correct prefab data to display currently selected slot holograms. A seprarate engine manages the animation in the background of sending the currently crafted blocks across the forge.
-		So players can craft more blocks, which will be added onto the animation queue. And when changing the forge mode to atomizer I change the animation state to red.
+		Lastly, this manager also handles setting the correct prefab data to display the currently selected slot holograms. A separate engine manages the animation in the background, sending the currently crafted blocks across the Forge. 
+		This allows players to craft more blocks, which are added to the animation queue. When switching the Forge mode to Atomizer, I change the animation state to "red."
 	</p>
 </div>
 <h2 class="greenEntry" id="Conversion">Entity Conversion System.</h2>
@@ -383,16 +393,18 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
 		I was asked to figure out how we can place spawn points in the scene which will spawn players in the game. We already had spawn point entities but now we had a different way of creation maps in the game.
 	</p>
 	<p>
-		Creating an entity is split into two things, first is the creation of the core entity which will return an EntityInitializer which can be used to initialize components of that entity with the correct data.
-		So I created a EntityConverterBase which has abstract BuildEntity/RemoveEntity functions. This allows anyone to create a class which will inherit from the Converter and they can specify which entity they want to build.
-		To fill the component data I created another abstract class SveltoComponentBaker, which has a single function Bake to which I pass the entityInitializer of the entity. Now the Converter has a list of those bakers. So we can
-		create a prefab, add the EntityConverter component on, along with any baker we want. It can be a generic transform baker which will fill the position and rotation components or something specific to that entity. Each baker is 
-		assigned into the list of bakers on the Converter.
+		Creating an entity is split into two parts. First is the creation of the core entity, which will return an EntityInitializer that can be used to initialize the components of that entity with the correct data.
+		To handle this, I created an EntityConverterBase with abstract BuildEntity and RemoveEntity functions. 
+		This allows anyone to create a class that inherits from the converter and specify which entity they want to build. 
+		To fill the component data, I created another abstract class called SveltoComponentBaker, which has a single function Bake, to which I pass the EntityInitializer of the entity.
+		Now, the converter has a list of these bakers. We can create a prefab, add the EntityConverter component, along with any baker we want.
+		It could be a generic transform baker that fills in the position and rotation components, or something more specific to that entity. Each baker is assigned to the list of bakers on the converter.
 	</p>
 	<p>
-		How do we call all thos abstract methods? Well I wrote an engine that reacts to a scene being loaded, then iterate through all objects with the EntityConverterBase class. If we find one we call the BuildEntity function and iterate
-		through the list of bakers and call the Bake function on them. Not this also allows us to create custom interfaces which can be used to inject specific data into the bakers. For example IPropPhysicsBaker will inject the physicsResourceManager
-		to the baker before the Bake function is called.
+		How do we call all these abstract methods? Well, I wrote an engine that reacts when a scene is loaded. It iterates through all objects with the EntityConverterBase class.
+		If it finds one, it calls the BuildEntity function and iterates through the list of bakers, calling the Bake function on each one. 
+		This setup also allows us to create custom interfaces that can be used to inject specific data into the bakers. 
+		For example, IPropPhysicsBaker will inject the PhysicsResourceManager into the baker before the Bake function is called.
 	</p>
 	<p>
 		Cleanup is very important that's why we have the RemoveEntity abstract function on each EntityConverter. When a scene is unloaded we iterate again through each Converter and remove that entity that was created.
@@ -413,10 +425,10 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
 </div>
 <br>
 <p>
-	Rectify is a simple ability to reposition a players machine upright on a short cooldown. I've made two versions of this ability first one was fully physics based and it would flip the player's machine 
-	in any free direction as so it would always land on the wheels. With combination of box casts, checking which direction is free and unobstructed (if none it will flip in place) and would apply just enough
-	force to flip the machine (video 1). The second version applies a kinematic force which lifts the machine up, rotates it and gently places it down. Both versions are data driven so designers can adjust the forces,
-	timing, and rotations as they please.
+	Rectify is a simple ability that repositions a player's machine upright on a short cooldown. I've made two versions of this ability.
+	The first one is fully physics-based, flipping the player's machine in any free direction so that it always lands on its wheels.
+	Using a combination of box casts, the system checks which direction is free and unobstructed. If no direction is clear, it will flip the machine in place and apply just enough force to rotate it (Video 1).
+	The second version applies a kinematic force that lifts the machine, rotates it, and gently places it back down. Both versions are data-driven, allowing designers to adjust the forces, timing, and rotations as needed.
 </p>
 <h2 class="greenEntry" id="WeaponSwitch">Weapon Switching.</h2>
 <br>
@@ -427,23 +439,26 @@ I created the scoreboard for Robocraft 2 Legacy and Redux. With both the code im
 </center>
 <br>
 <p>
-	Weapon Switching works by selecting only one weapon bank as the active bank. This is done by having a "currentlySelectedBankIndex" value on the machine. You can change this value by selecting one of 3 (you can only have 3 weapon banks)
-	buttons which would change that value. Weapons from inactive banks have their lookAt point set at a const forward distance from the machine forward vector to look as inactive. Any bank which is not selected does not get their input values
-	changed so only the active weapon bank weapons can read the fire/aim inputs.
+	Weapon Switching works by selecting only one weapon bank as the active bank. 
+	This is done by having a currentlySelectedBankIndex value on the machine, which can be changed by selecting one of the three available weapon banks 
+	(you can only have three weapon banks). When a bank is selected, the value of currentlySelectedBankIndex is updated. 
+	Weapons from inactive banks have their lookAt point set at a constant forward distance from the machine's forward vector to make them appear inactive. 
+	Any bank that is not selected does not receive input values, so only the active weapon bank's weapons can read the fire/aim inputs.
 </p>
 <p>
-	I've also implemented the UI for this feature which dynamically reads all banks and creates the bank icons on the player HUD with the icon being the highest tier of weapon from that bank. The selected bank has the icon highlighted and 
-	if a bank has no active weapons the icon becomes greyed out.
+	I've also implemented the UI for this feature, which dynamically reads all weapon banks and creates the bank icons on the player HUD. 
+	The icon for each bank is the highest tier weapon in that bank. The selected bank's icon is highlighted, and if a bank has no active weapons, the icon is greyed out.
 </p>
 <p><a style="text-decoration: none; color:lightblue;">Crosshairs</a></p>
 <p>
-	Lastly I implemented a system to assign a crosshair to a weapon in data which would be displayed when selecting a weapon. Each crosshair could have its own custom implementation without conflicting with other weapon types.
-	In addition in the Legacy version of the game I implemented "aimpoint", circles showing where weapons are aiming in the world (similar to War Thunder).
+	Lastly, I implemented a system to assign a crosshair to a weapon in the data, which is displayed when selecting that weapon. 
+	Each crosshair can have its own custom implementation without conflicting with other weapon types.
+	Additionally, in the Legacy version of the game, I implemented "aimpoints"—circles that show where weapons are aiming in the world, similar to War Thunder.
 </p>
 <h2 class="greenEntry" id="Mentions">Honourable mentions.</h2>
 <br>
 <p>
-	I could write much more about other features I've created while working on Robocraft2 and I am more than happy to talk about them in detail on request!
+	I could write much more about the other features I've created while working on Robocraft 2, and I would be more than happy to discuss them in detail upon request!
 </p>
 <ul>
    <li>Fly Camera for marketing.</li>
